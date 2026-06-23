@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Траст Лидс — удалённый заработок без вложений и рисков</title>
+<meta name="description" content="TrustLeads — CPA-маркетинг и арбитраж трафика в HR и банковской вертикалях. Старт с нулевыми вложениями, без финансовых и юридических рисков.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0A0118; --bg2:#0D0221; --bg3:#100425; --bg-top:#1B0A3A;
+    --violet:#7C3AED; --violet-l:#8B5CF6; --violet-d:#6D28D9;
+    --indigo:#4F46E5; --blue:#3B82F6; --blue-d:#2563EB;
+    --lav:#A78BFA; --cyan:#22D3EE;
+    --text:#E9E4FB; --text2:#B6ACD6; --text3:#7E739C;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Manrope',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(124,58,237,.5);color:#fff}
+  a{color:inherit}
+
+  @keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  @keyframes pulseGlow{0%,100%{box-shadow:0 0 36px rgba(124,58,237,.45),0 0 0 0 rgba(124,58,237,.35)}50%{box-shadow:0 0 70px rgba(124,58,237,.75),0 0 0 14px rgba(124,58,237,0)}}
+  @keyframes floatBlob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.12)}}
+  @keyframes floatBlob2{0%,100%{transform:translate(0,0) scale(1.05)}50%{transform:translate(-50px,40px) scale(.92)}}
+  @keyframes cometPulse{0%,100%{box-shadow:0 0 18px 4px rgba(34,211,238,.9),0 0 50px 10px rgba(124,58,237,.7)}50%{box-shadow:0 0 30px 8px rgba(34,211,238,1),0 0 70px 18px rgba(124,58,237,.85)}}
+  @keyframes spinSlow{to{transform:rotate(360deg)}}
+
+  /* ===== layout shell ===== */
+  .page{position:relative;width:100%;overflow:hidden;background:radial-gradient(140% 90% at 50% -10%,#1B0A3A 0%,#100425 38%,#0A0118 78%)}
+
+  /* ===== cosmic background ===== */
+  .cosmos{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  .cosmos canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .blob{position:absolute;border-radius:50%}
+  .blob-1{top:-12%;left:-8%;width:48vw;height:48vw;background:radial-gradient(circle,rgba(124,58,237,.55),rgba(124,58,237,0) 70%);filter:blur(60px);animation:floatBlob 18s ease-in-out infinite}
+  .blob-2{top:30%;right:-12%;width:46vw;height:46vw;background:radial-gradient(circle,rgba(59,130,246,.42),rgba(59,130,246,0) 70%);filter:blur(70px);animation:floatBlob2 22s ease-in-out infinite}
+  .blob-3{bottom:-14%;left:24%;width:42vw;height:42vw;background:radial-gradient(circle,rgba(34,211,238,.3),rgba(34,211,238,0) 70%);filter:blur(80px);animation:floatBlob 26s ease-in-out infinite}
+
+  /* ===== nav ===== */
+  .nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(20px,5vw,56px);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:linear-gradient(180deg,rgba(10,1,24,.7),rgba(10,1,24,.25));border-bottom:1px solid rgba(167,139,250,.12)}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo-cube{width:34px;height:34px;border-radius:10px;background:conic-gradient(from 180deg,#7C3AED,#3B82F6,#22D3EE,#7C3AED);box-shadow:0 0 22px rgba(124,58,237,.7);animation:spinSlow 12s linear infinite}
+  .brand-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:.5px;color:#fff}
+  .nav-links{display:flex;align-items:center;gap:clamp(14px,2vw,28px)}
+  .nav-links a{font-size:15px;font-weight:600;color:var(--text2);text-decoration:none;transition:color .25s;white-space:nowrap}
+  .nav-links a:hover{color:#fff}
+  .nav-right{display:flex;align-items:center;gap:14px}
+  .nav-burger{display:none;width:42px;height:42px;border-radius:12px;border:1px solid rgba(167,139,250,.3);background:rgba(255,255,255,.04);color:#fff;font-size:20px;cursor:pointer;align-items:center;justify-content:center;transition:background .25s,border-color .25s}
+  .nav-burger:hover{background:rgba(124,58,237,.2);border-color:#22D3EE}
+  @media (max-width:880px){
+    .nav-links{position:fixed;inset:0 0 0 auto;width:min(300px,82vw);flex-direction:column;align-items:flex-start;justify-content:center;gap:26px;padding:80px 36px;background:linear-gradient(160deg,rgba(28,12,58,.98),rgba(13,2,33,.99));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-left:1px solid rgba(167,139,250,.2);box-shadow:-20px 0 60px rgba(0,0,0,.5);transform:translateX(105%);transition:transform .35s ease;z-index:60}
+    .nav-links.open{transform:translateX(0)}
+    .nav-links a{font-size:19px;color:#fff}
+    .nav-burger{display:flex}
+  }
+  .sidenav{position:fixed;left:24px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:18px;opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease}
+  .sidenav.visible{opacity:1;visibility:visible}
+  .sidenav-dot{position:relative;width:13px;height:13px;border-radius:50%;background:rgba(167,139,250,.3);border:1px solid rgba(167,139,250,.55);transition:transform .3s,background .3s,box-shadow .3s;display:block}
+  .sidenav-dot:hover{background:rgba(34,211,238,.6);transform:scale(1.25)}
+  .sidenav-dot.active{background:#22D3EE;border-color:#22D3EE;box-shadow:0 0 12px rgba(34,211,238,.8);transform:scale(1.3)}
+  .sidenav-label{position:absolute;left:26px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:13px;font-weight:600;color:#fff;background:rgba(13,2,33,.92);border:1px solid rgba(167,139,250,.25);padding:6px 12px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .25s ease}
+  .sidenav-dot:hover .sidenav-label{opacity:1}
+  @media (max-width:1100px){ .sidenav{display:none} }
+
+  /* ===== buttons ===== */
+  .btn{font-family:'Manrope',sans-serif;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;border-radius:999px}
+  .btn-grad{color:#fff;background:linear-gradient(120deg,#7C3AED,#4F46E5,#3B82F6);background-size:200% 200%;animation:gradShift 7s ease infinite}
+  .btn-nav{font-weight:700;font-size:14px;padding:11px 22px;box-shadow:0 0 24px rgba(124,58,237,.5);transition:transform .3s,box-shadow .3s}
+  .btn-nav:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(34,211,238,.6)}
+  .btn-hero{font-weight:700;font-size:17px;padding:19px 44px;animation:gradShift 7s ease infinite,pulseGlow 3.4s ease-in-out infinite;transition:transform .35s}
+  .btn-hero:hover{transform:scale(1.05)}
+  .btn-cta{font-weight:700;font-size:18px;padding:20px 50px;animation:gradShift 7s ease infinite,pulseGlow 3.4s ease-in-out infinite;transition:transform .35s}
+  .btn-cta:hover{transform:scale(1.06)}
+  .btn-outline{font-weight:600;font-size:17px;color:var(--text);padding:19px 36px;border:1px solid rgba(167,139,250,.32);background:rgba(255,255,255,.03);backdrop-filter:blur(10px);transition:border-color .3s,background .3s}
+  .btn-outline:hover{border-color:rgba(34,211,238,.6);background:rgba(124,58,237,.12)}
+
+  /* ===== typography ===== */
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8DECFB;margin-bottom:18px;padding:7px 16px;border-radius:999px;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.35);box-shadow:0 0 22px rgba(34,211,238,.18)}
+  .eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:#22D3EE;box-shadow:0 0 10px #22D3EE;flex:none}
+  .h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4.6vw,58px);line-height:1.08;letter-spacing:-1px;color:#fff}
+  .lead{font-size:clamp(15px,1.7vw,19px);line-height:1.65;color:var(--text2)}
+
+  /* ===== sections ===== */
+  .section{position:relative;z-index:1;padding:clamp(70px,10vh,120px) clamp(20px,5vw,40px)}
+  section[id]{scroll-margin-top:88px}
+  .wrap{max-width:1180px;margin:0 auto}
+  .head{text-align:center;max-width:780px;margin:0 auto 56px}
+
+  /* ===== hero ===== */
+  .hero{position:relative;z-index:1;min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px clamp(20px,5vw,40px) 120px}
+  .hero-inner{max-width:1000px}
+  .badge{display:inline-flex;align-items:center;gap:9px;padding:8px 18px;border-radius:999px;border:1px solid rgba(167,139,250,.3);background:rgba(124,58,237,.1);backdrop-filter:blur(10px);font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--lav);margin-bottom:30px}
+  .badge-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px #22D3EE}
+  .hero h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(40px,7.4vw,94px);line-height:1.02;letter-spacing:-1.5px;color:#fff;margin-bottom:26px}
+  .grad-text{background:linear-gradient(110deg,#A78BFA,#7C3AED,#3B82F6,#22D3EE);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gradShift 8s ease infinite}
+  .hero p{font-size:clamp(16px,2vw,21px);line-height:1.6;color:var(--text2);max-width:720px;margin:0 auto 42px}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+
+  /* ===== glass cards grid ===== */
+  .grid{display:grid;gap:22px}
+  .grid-about{grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+  .grid-adv{grid-template-columns:repeat(auto-fit,minmax(245px,1fr))}
+  .card{padding:30px;border-radius:22px;background:rgba(124,58,237,.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(167,139,250,.18);box-shadow:0 10px 44px rgba(10,1,24,.5);transition:transform .4s ease,box-shadow .4s ease,border-color .4s ease}
+  .card:hover{transform:translateY(-7px);border-color:rgba(34,211,238,.5);box-shadow:0 16px 56px rgba(124,58,237,.35)}
+  .card-adv{padding:32px 28px}
+  .card-adv:hover{transform:translateY(-8px);box-shadow:0 18px 60px rgba(124,58,237,.4)}
+  .card-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;background:linear-gradient(135deg,rgba(124,58,237,.4),rgba(59,130,246,.3));border:1px solid rgba(167,139,250,.3);margin-bottom:18px}
+  .card h3{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;color:#fff;margin-bottom:10px}
+  .card p{font-size:15px;line-height:1.6;color:var(--text2)}
+  .card-emoji{font-size:30px;margin-bottom:16px}
+  .card-adv h3{margin-bottom:9px}
+
+  /* ===== journey ===== */
+  .journey-wrap{max-width:980px;margin:0 auto}
+  .journey-head{text-align:center;max-width:760px;margin:0 auto 64px}
+  .rail{position:relative;padding-left:clamp(56px,8vw,84px)}
+  .rail-track{position:absolute;left:clamp(26px,4vw,40px);top:8px;bottom:8px;width:2px;border-radius:2px;background:rgba(167,139,250,.14)}
+  .rail-fill{position:absolute;left:clamp(26px,4vw,40px);top:8px;width:2px;height:0;border-radius:2px;background:linear-gradient(180deg,#22D3EE,#7C3AED,#4F46E5);box-shadow:0 0 16px rgba(124,58,237,.9),0 0 30px rgba(34,211,238,.5)}
+  .comet{position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);width:14px;height:14px;border-radius:50%;background:var(--cyan);animation:cometPulse 2.4s ease-in-out infinite}
+  .nodes{display:flex;flex-direction:column;gap:clamp(24px,3.4vw,38px)}
+  .node{position:relative}
+  .node-num{position:absolute;left:calc(-1*clamp(56px,8vw,84px) + clamp(26px,4vw,40px) - 17px);top:4px;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:#fff;background:radial-gradient(circle at 30% 30%,#3B0F6B,#16052E);border:2px solid rgba(167,139,250,.45);box-shadow:0 0 0 5px rgba(10,1,24,.9);transition:transform .35s,box-shadow .35s,border-color .35s}
+  .node-num:hover{transform:scale(1.18);border-color:#22D3EE;box-shadow:0 0 0 5px rgba(10,1,24,.9),0 0 28px rgba(34,211,238,.85)}
+  .node-card{padding:22px 26px;border-radius:18px;background:rgba(124,58,237,.07);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(167,139,250,.18);transition:transform .4s,border-color .4s,box-shadow .4s}
+  .node-card:hover{transform:translateX(6px);border-color:rgba(34,211,238,.45);box-shadow:0 12px 44px rgba(124,58,237,.3)}
+  .node-card h3{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(18px,2.2vw,23px);color:#fff;margin-bottom:6px}
+  .node-card p{font-size:15px;line-height:1.55;color:var(--text2)}
+  .node-final .node-num{background:radial-gradient(circle at 30% 30%,#7C3AED,#22D3EE);border:2px solid rgba(34,211,238,.6);box-shadow:0 0 0 5px rgba(10,1,24,.9),0 0 28px rgba(34,211,238,.6)}
+  .node-final .node-num:hover{transform:scale(1.18);box-shadow:0 0 0 5px rgba(10,1,24,.9),0 0 40px rgba(34,211,238,1)}
+  .node-final .node-card{background:linear-gradient(135deg,rgba(124,58,237,.18),rgba(34,211,238,.08));border:1px solid rgba(34,211,238,.35)}
+  .node-final .node-card:hover{transform:translateX(6px);border-color:rgba(34,211,238,.7);box-shadow:0 12px 50px rgba(34,211,238,.35)}
+  .node-final .node-card p{color:#CFC6EC}
+
+  /* ===== reviews ===== */
+  .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+  .review-card{display:flex;flex-direction:column;padding:28px;border-radius:22px;background:rgba(124,58,237,.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(167,139,250,.18);box-shadow:0 10px 44px rgba(10,1,24,.5);transition:transform .4s ease,box-shadow .4s ease,border-color .4s ease}
+  .review-card:hover{transform:translateY(-7px);border-color:rgba(34,211,238,.5);box-shadow:0 16px 56px rgba(124,58,237,.35)}
+  .stars{color:#FBBF24;font-size:17px;letter-spacing:3px;margin-bottom:14px}
+  .review-text{font-size:15px;line-height:1.65;color:var(--text);flex:1;margin-bottom:20px}
+  .review-author{display:flex;align-items:center;gap:12px}
+  .review-avatar{width:44px;height:44px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:#fff;background:linear-gradient(135deg,#7C3AED,#3B82F6)}
+  .review-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#fff}
+  .review-meta{font-size:13px;color:var(--text3);margin-top:2px}
+
+  /* ===== video ===== */
+  .videos{display:flex;flex-wrap:wrap;gap:28px;justify-content:center}
+  .video{flex:1 1 420px;max-width:560px}
+  .video-frame{position:relative;aspect-ratio:16/9;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:box-shadow .4s,border-color .4s}
+  .video-frame:hover{border-color:rgba(34,211,238,.55);box-shadow:0 0 70px rgba(34,211,238,.45)}
+  .video-1{background:radial-gradient(circle at 50% 40%,#23104A,#0D0221);border:1px solid rgba(167,139,250,.28);box-shadow:0 0 50px rgba(124,58,237,.3)}
+  .video-2{background:radial-gradient(circle at 50% 40%,#102444,#0D0221);border:1px solid rgba(167,139,250,.28);box-shadow:0 0 50px rgba(59,130,246,.3)}
+  .video-frame iframe,.video-frame video{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:22px;object-fit:cover;background:#0D0221}
+  .play{width:74px;height:74px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff}
+  .play-1{background:linear-gradient(135deg,#7C3AED,#3B82F6);box-shadow:0 0 34px rgba(124,58,237,.7)}
+  .play-2{background:linear-gradient(135deg,#3B82F6,#22D3EE);box-shadow:0 0 34px rgba(59,130,246,.7)}
+  .video-ph{font-size:14px;font-weight:600;letter-spacing:1px;color:var(--lav)}
+  .video-cap{text-align:center;font-size:15px;color:var(--text2);margin-top:16px}
+
+  /* ===== contacts ===== */
+  .contacts-grid{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;max-width:1000px;margin:0 auto}
+  .contact-card{flex:1 1 260px;max-width:320px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:26px;border-radius:24px;background:rgba(124,58,237,.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(167,139,250,.18);box-shadow:0 10px 44px rgba(10,1,24,.5);transition:transform .4s,border-color .4s,box-shadow .4s}
+  .contact-card:hover{transform:translateY(-7px);border-color:rgba(34,211,238,.5);box-shadow:0 16px 56px rgba(124,58,237,.35)}
+  .contact-qr-img{width:100%;max-width:240px;border-radius:18px;display:block;margin:0 auto 18px}
+  .qr-ph{width:200px;height:200px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.04);border:1px dashed rgba(167,139,250,.4);color:var(--lav);font-size:13px;font-weight:600;margin:0 auto 18px;text-align:center;padding:10px}
+  .contact-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:#fff;margin-bottom:14px}
+  .contact-btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:#fff;text-decoration:none;padding:12px 24px;border-radius:999px;background:linear-gradient(120deg,#7C3AED,#3B82F6);box-shadow:0 0 20px rgba(124,58,237,.4);transition:transform .3s}
+  .contact-btn:hover{transform:scale(1.04)}
+
+  /* ===== faq ===== */
+  .faq{display:flex;flex-direction:column;gap:14px;max-width:820px;margin:0 auto}
+  .faq-item{border-radius:16px;background:rgba(124,58,237,.07);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(167,139,250,.18);overflow:hidden;transition:border-color .3s}
+  .faq-item.open{border-color:rgba(34,211,238,.4)}
+  .faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;padding:20px 22px;background:none;border:none;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(15px,2vw,18px);color:#fff;transition:color .3s}
+  .faq-q:hover{color:#8DECFB}
+  .faq-icon{flex:none;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:400;line-height:1;color:var(--cyan);transition:transform .3s}
+  .faq-item.open .faq-icon{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .faq-answer{padding:4px 22px 20px;font-size:15px;line-height:1.65;color:var(--text2)}
+  .faq-answer p{margin-bottom:10px}
+  .faq-answer p:last-child{margin-bottom:0}
+  .faq-answer strong{color:#E9E4FB}
+  .faq-answer ol,.faq-answer ul{margin:8px 0 0 20px}
+  .faq-answer li{margin-bottom:6px}
+
+  /* ===== cta ===== */
+  .cta-section{position:relative;z-index:1;padding:clamp(70px,11vh,130px) clamp(20px,5vw,40px);text-align:center}
+  .cta-panel{max-width:760px;margin:0 auto;padding:clamp(40px,6vw,72px) clamp(24px,5vw,56px);border-radius:30px;background:linear-gradient(135deg,rgba(124,58,237,.16),rgba(59,130,246,.08));backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(167,139,250,.28);box-shadow:0 0 70px rgba(124,58,237,.3)}
+  .cta-panel h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4.8vw,56px);line-height:1.08;letter-spacing:-1px;color:#fff;margin-bottom:18px}
+  .cta-panel p{font-size:clamp(15px,1.8vw,19px);line-height:1.6;color:var(--text2);margin-bottom:36px}
+
+  /* ===== footer ===== */
+  .footer{position:relative;z-index:1;padding:46px clamp(20px,5vw,40px);border-top:1px solid rgba(167,139,250,.12);background:rgba(10,1,24,.5);backdrop-filter:blur(10px)}
+  .footer-inner{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+  .footer-brand{display:flex;align-items:center;gap:11px}
+  .footer-cube{width:28px;height:28px;border-radius:8px;background:conic-gradient(from 180deg,#7C3AED,#3B82F6,#22D3EE,#7C3AED)}
+  .footer-brand span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:#fff}
+  .footer-vk{font-size:15px;font-weight:600;color:var(--lav);text-decoration:none;padding:9px 18px;border-radius:999px;border:1px solid rgba(167,139,250,.3);transition:border-color .3s,color .3s}
+  .footer-vk:hover{border-color:#22D3EE;color:#22D3EE}
+  .copy{font-size:14px;color:var(--text3)}
+
+  /* ===== reveal ===== */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.show{opacity:1;transform:none}
+
+  /* ===== modal ===== */
+  .overlay{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(6,1,16,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .overlay.open{display:flex}
+  .modal{width:min(640px,100%);max-height:90vh;overflow-y:auto;border-radius:26px;background:linear-gradient(160deg,rgba(28,12,58,.92),rgba(13,2,33,.96));backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(167,139,250,.32);box-shadow:0 30px 90px rgba(0,0,0,.6),0 0 70px rgba(124,58,237,.35);padding:clamp(26px,4vw,40px)}
+  .modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:26px}
+  .modal-head h3{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(22px,3vw,30px);color:#fff;letter-spacing:-.5px;margin-bottom:6px}
+  .modal-head p{font-size:14px;color:var(--text2)}
+  .modal-close{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid rgba(167,139,250,.3);background:rgba(255,255,255,.04);color:var(--text);font-size:18px;cursor:pointer;transition:background .3s,border-color .3s}
+  .modal-close:hover{background:rgba(124,58,237,.25);border-color:#22D3EE}
+
+  .agree-box{padding:20px 22px;border-radius:18px;background:rgba(124,58,237,.08);border:1px solid rgba(167,139,250,.2);margin-bottom:18px}
+  .agree-row{display:flex;align-items:flex-start;gap:14px}
+  .checkbox{flex:none;width:26px;height:26px;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;border:1px solid rgba(167,139,250,.45);background:rgba(255,255,255,.04);transition:all .3s ease}
+  .checkbox::after{content:'✓';opacity:0;transition:opacity .2s ease}
+  .modal.agreed .checkbox{border:1px solid rgba(34,211,238,.7);background:linear-gradient(135deg,#7C3AED,#22D3EE);box-shadow:0 0 18px rgba(34,211,238,.6)}
+  .modal.agreed .checkbox::after{opacity:1}
+  .agree-label{font-size:15px;line-height:1.5;color:var(--text);cursor:pointer;display:block}
+  .agree-label a{color:var(--cyan);font-weight:700;text-decoration:underline}
+  .oferta-toggle{margin-top:8px;background:none;border:none;color:var(--lav);font-size:13px;font-weight:600;cursor:pointer;padding:0;text-decoration:underline}
+  .oferta-panel{max-height:0;overflow-y:hidden;margin-top:0;padding:0 16px;border-radius:12px;background:rgba(13,2,33,.6);border:1px solid rgba(167,139,250,0);transition:all .45s ease}
+  .modal.oferta-open .oferta-panel{max-height:220px;overflow-y:auto;margin-top:12px;padding:14px 16px;border:1px solid rgba(167,139,250,.2)}
+  .oferta-panel p{font-size:13px;line-height:1.6;color:var(--text2)}
+  .oferta-pdf{width:100%;height:52vh;border:0;border-radius:10px;background:#fff;display:block}
+  .modal.oferta-has-pdf.oferta-open .oferta-panel{max-height:60vh}
+
+  .reg-info{margin-bottom:16px;padding:16px 18px;border-radius:14px;background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.2)}
+  .reg-info p{font-size:13px;line-height:1.6;color:var(--text2);margin-bottom:10px}
+  .reg-info p:last-child{margin-bottom:0}
+  .reg-info strong{color:#E9E4FB}
+  .instruction-link{display:inline-block;font-weight:700;font-size:14px;color:var(--cyan);text-decoration:none;padding:10px 18px;border-radius:999px;border:1px solid rgba(34,211,238,.4);background:rgba(34,211,238,.08);transition:background .3s,border-color .3s}
+  .instruction-link:hover{background:rgba(34,211,238,.18);border-color:var(--cyan)}
+  .reg-note{font-size:12.5px;line-height:1.6;color:var(--text3)}
+
+  .services-zone{position:relative}
+  .lock-badge{position:absolute;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;pointer-events:none}
+  .lock-badge span{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:rgba(13,2,33,.85);border:1px solid rgba(167,139,250,.35);font-size:13px;font-weight:600;color:var(--lav)}
+  .modal.agreed .lock-badge{display:none}
+  .services{filter:blur(5px);opacity:.5;pointer-events:none;user-select:none;transition:filter .5s ease,opacity .5s ease;padding:20px 22px;border-radius:18px;background:rgba(124,58,237,.06);border:1px solid rgba(167,139,250,.18)}
+  .modal.agreed .services{filter:none;opacity:1;pointer-events:auto;user-select:auto}
+  .services h4{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;color:#fff;margin-bottom:6px}
+  .services-sub{font-size:13px;color:var(--text2);margin-bottom:16px}
+  .service-list{display:flex;flex-direction:column;gap:12px}
+  .service{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(167,139,250,.18);transition:border-color .3s,background .3s}
+  .service:hover{border-color:rgba(34,211,238,.45);background:rgba(124,58,237,.1)}
+  .service-info{flex:1 1 200px}
+  .service-info .service-name{font-weight:700;font-size:15px;color:#fff;margin-bottom:3px}
+  .service-info .service-desc{font-size:13px;color:var(--text2)}
+  .service-tariff{font-size:12.5px;line-height:1.45;color:var(--cyan);margin-top:6px;font-weight:600}
+  .have-ip{margin-top:16px;padding:16px 18px;border-radius:14px;background:rgba(124,58,237,.1);border:1px solid rgba(167,139,250,.3)}
+  .have-ip-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:#fff;margin-bottom:8px}
+  .have-ip p{font-size:13px;line-height:1.6;color:var(--text2);margin-bottom:12px}
+  .have-ip-btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:#fff;text-decoration:none;padding:11px 20px;border-radius:999px;background:linear-gradient(120deg,#7C3AED,#3B82F6);box-shadow:0 0 20px rgba(124,58,237,.4);transition:transform .3s}
+  .have-ip-btn:hover{transform:scale(1.04)}
+  .service-btn{flex:none;font-weight:700;font-size:14px;color:#fff;text-decoration:none;padding:10px 22px;border-radius:999px;background:linear-gradient(120deg,#7C3AED,#3B82F6);box-shadow:0 0 20px rgba(124,58,237,.5);transition:transform .3s}
+  .service-btn:hover{transform:scale(1.05)}
+  .service-btn-muted{background:rgba(255,255,255,.06);box-shadow:none;border:1px solid rgba(167,139,250,.25)}
+  .service-btn-muted:hover{transform:none;background:rgba(255,255,255,.1)}
+  .service-note{flex-basis:100%;width:100%;margin-top:4px;font-size:12.5px;line-height:1.5;color:#FBBF24;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.32);border-radius:10px;padding:9px 12px;display:none}
+  .service-note.show{display:block}
+
+  /* ===== заявка (форма ВТБ) ===== */
+  .form-modal form{display:flex;flex-direction:column;gap:14px}
+  .field{display:flex;flex-direction:column;gap:7px}
+  .field label{font-size:13px;font-weight:600;color:var(--text2)}
+  .field input{width:100%;padding:13px 16px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(167,139,250,.25);color:var(--text);font-family:'Manrope',sans-serif;font-size:15px;outline:none;transition:border-color .25s,background .25s}
+  .field input:focus{border-color:rgba(34,211,238,.6);background:rgba(124,58,237,.08)}
+  .field input::placeholder{color:var(--text3)}
+  .consent{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text2);cursor:pointer;line-height:1.45}
+  .consent input{margin-top:2px;width:18px;height:18px;accent-color:#7C3AED;flex:none}
+  .form-submit{width:100%;padding:16px;font-size:16px;font-weight:700;margin-top:4px}
+  .form-submit:disabled{opacity:.6;cursor:default;animation:none}
+  .form-msg{font-size:13px;line-height:1.5}
+  .form-msg.error{color:#FCA5A5}
+  .form-msg.success{color:#6EE7B7}
+  .vk-btn{margin-top:22px;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:16px;color:#fff;text-decoration:none;padding:16px;border-radius:14px;background:linear-gradient(120deg,#4F46E5,#3B82F6,#22D3EE);background-size:200% 200%;animation:gradShift 7s ease infinite;box-shadow:0 0 30px rgba(59,130,246,.45);transition:transform .3s}
+  .vk-btn:hover{transform:translateY(-2px)}
+
+  .link-disabled{cursor:not-allowed;opacity:.85}
+</style>
+</head>
+<body>
+<div class="page" id="page">
+
+  <!-- ===== COSMIC BACKGROUND ===== -->
+  <div class="cosmos" aria-hidden="true">
+    <canvas id="stars"></canvas>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- ===== NAV ===== -->
+  <header class="nav">
+    <div class="brand">
+      <div class="logo-cube"></div>
+      <span class="brand-name">TrustLeads</span>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">О проекте</a>
+      <a href="#journey">Как это работает</a>
+      <a href="#advantages">Преимущества</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">Вопросы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="nav-right">
+      <button type="button" class="btn btn-grad btn-nav" data-open-modal>Присоединиться</button>
+      <button type="button" class="nav-burger" id="navBurger" aria-label="Меню">☰</button>
+    </div>
+  </header>
+
+  <!-- ===== SIDE NAV (scroll dots) ===== -->
+  <nav class="sidenav" id="sidenav" aria-label="Навигация по разделам">
+    <a href="#hero" class="sidenav-dot" data-target="hero"><span class="sidenav-label">Главная</span></a>
+    <a href="#about" class="sidenav-dot" data-target="about"><span class="sidenav-label">О проекте</span></a>
+    <a href="#journey" class="sidenav-dot" data-target="journey"><span class="sidenav-label">Как это работает</span></a>
+    <a href="#advantages" class="sidenav-dot" data-target="advantages"><span class="sidenav-label">Преимущества</span></a>
+    <a href="#reviews" class="sidenav-dot" data-target="reviews"><span class="sidenav-label">Отзывы</span></a>
+    <a href="#faq" class="sidenav-dot" data-target="faq"><span class="sidenav-label">Вопросы</span></a>
+    <a href="#contacts" class="sidenav-dot" data-target="contacts"><span class="sidenav-label">Контакты</span></a>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-inner reveal">
+      <div class="badge"><span class="badge-dot"></span>CPA-маркетинг · арбитраж трафика</div>
+      <h1>Удалённый заработок<br><span class="grad-text">без вложений и рисков</span></h1>
+      <p>CPA-маркетинг в HR и банковской вертикалях. Старт с нулевыми вложениями — без финансовых и юридических рисков.</p>
+      <div class="hero-actions">
+        <button type="button" class="btn btn-grad btn-hero" data-open-modal>Присоединиться к проекту →</button>
+        <a href="#journey" class="btn btn-outline">Как это работает</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">О проекте</p>
+        <h2 class="h2" style="margin-bottom:20px">Что такое «TrustLeads»</h2>
+        <p class="lead">Проект, который рассказывает, показывает и обеспечивает ведение для совершеннолетних дееспособных физлиц, желающих найти реальный способ удалённого заработка с минимальными или нулевыми вложениями.</p>
+      </div>
+      <div class="grid grid-about">
+        <div class="card reveal" style="transition-delay:.05s">
+          <div class="card-icon">🧭</div>
+          <h3>Арбитраж трафика</h3>
+          <p>Знакомство с арбитражом трафика в HR и банковской вертикалях — на понятном языке, с нуля.</p>
+        </div>
+        <div class="card reveal" style="transition-delay:.1s">
+          <div class="card-icon">🛠️</div>
+          <h3>Готовые инструменты</h3>
+          <p>Инструменты для продвижения офферов рекламодателей — без вложений со стороны участника.</p>
+        </div>
+        <div class="card reveal" style="transition-delay:.15s">
+          <div class="card-icon">📈</div>
+          <h3>Трафик и конверсии</h3>
+          <p>Получайте трафик, доводите лиды до конверсий и зарабатывайте на целевых действиях.</p>
+        </div>
+        <div class="card reveal" style="transition-delay:.2s">
+          <div class="card-icon">🤝</div>
+          <h3>Ведение и поддержка</h3>
+          <p>Проект сопровождает на каждом шаге — рассказывает, показывает и обеспечивает ведение.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOURNEY (6 STEPS) ===== -->
+  <section id="journey" class="section">
+    <div class="journey-wrap">
+      <div class="journey-head reveal">
+        <p class="eyebrow">Маршрут участника</p>
+        <h2 class="h2">Путь от старта<br>до вознаграждения</h2>
+      </div>
+
+      <div class="rail">
+        <div class="rail-track"></div>
+        <div class="rail-fill" id="railFill"><span class="comet"></span></div>
+
+        <div class="nodes">
+          <div class="node reveal">
+            <div class="node-num" tabindex="0">1</div>
+            <div class="node-card">
+              <h3>Ознакомление с проектом</h3>
+              <p>Узнаёте, как устроен заработок и что вас ждёт на каждом этапе.</p>
+            </div>
+          </div>
+          <div class="node reveal">
+            <div class="node-num" tabindex="0">2</div>
+            <div class="node-card">
+              <h3>Регистрация инструментов</h3>
+              <p>Подключаете необходимые сервисы и инструменты для работы.</p>
+            </div>
+          </div>
+          <div class="node reveal">
+            <div class="node-num" tabindex="0">3</div>
+            <div class="node-card">
+              <h3>Размещение рекламных объявлений</h3>
+              <p>Размещаете рекламные объявления по офферам рекламодателей.</p>
+            </div>
+          </div>
+          <div class="node reveal">
+            <div class="node-num" tabindex="0">4</div>
+            <div class="node-card">
+              <h3>Сбор лидов</h3>
+              <p>Собираете лиды и доводите их до целевого действия — конверсии.</p>
+            </div>
+          </div>
+          <div class="node reveal">
+            <div class="node-num" tabindex="0">5</div>
+            <div class="node-card">
+              <h3>Результат — конверсии</h3>
+              <p>Лиды выполнили целевое действие — конверсия засчитана.</p>
+            </div>
+          </div>
+          <div class="node node-final reveal">
+            <div class="node-num" tabindex="0">6</div>
+            <div class="node-card">
+              <h3>Партнёрское вознаграждение 💎</h3>
+              <p>Комиссионное вознаграждение в соответствии с размером комиссии по офферу.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NO RISK / ADVANTAGES ===== -->
+  <section class="section" id="advantages">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Преимущества</p>
+        <h2 class="h2" style="margin-bottom:20px">У участника нет никаких финансовых и юридических рисков</h2>
+        <p class="lead">Ни финансовых, ни юридических, ни прочих. Вы начинаете с нуля и ничем не рискуете.</p>
+      </div>
+      <div class="grid grid-adv">
+        <div class="card card-adv reveal" style="transition-delay:.05s">
+          <div class="card-emoji">💸</div>
+          <h3>Нулевые вложения</h3>
+          <p>Стартуете без затрат — деньги вкладывать не нужно.</p>
+        </div>
+        <div class="card card-adv reveal" style="transition-delay:.1s">
+          <div class="card-emoji">🛡️</div>
+          <h3>Без юридических рисков</h3>
+          <p>Официальное взаимодействие на платформах по договору оказания услуг. Оферта акцептуется при регистрации.</p>
+        </div>
+        <div class="card card-adv reveal" style="transition-delay:.15s">
+          <div class="card-emoji">⚙️</div>
+          <h3>Реальные инструменты</h3>
+          <p>Рабочие инструменты для трафика, лидов и конверсий.</p>
+        </div>
+        <div class="card card-adv reveal" style="transition-delay:.2s">
+          <div class="card-emoji">🤝</div>
+          <h3>Сопровождение</h3>
+          <p>Ведение и поддержка проекта на каждом шаге пути.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS ===== -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Отзывы участников</p>
+        <h2 class="h2">Что говорят участники проекта</h2>
+      </div>
+      <div class="reviews-grid" id="reviewsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== VIDEO BLOCK ===== -->
+  <section class="section">
+    <div class="wrap">
+      <div class="head reveal" style="margin-bottom:52px">
+        <p class="eyebrow">Смотрите видео</p>
+        <h2 class="h2">Узнайте о проекте подробнее</h2>
+      </div>
+      <div class="videos">
+        <div class="video reveal" style="transition-delay:.05s">
+          <div class="video-frame video-1" data-video="1">
+            <div class="play play-1">▶</div>
+            <span class="video-ph">[ ВСТАВИТЬ ВИДЕО 1 — из NotebookLM ]</span>
+          </div>
+          <p class="video-cap">Обзор проекта «Траст Лидс»</p>
+        </div>
+        <div class="video reveal" style="transition-delay:.12s">
+          <div class="video-frame video-2" data-video="2">
+            <div class="play play-2">▶</div>
+            <span class="video-ph">[ ВСТАВИТЬ ВИДЕО 2 ]</span>
+          </div>
+          <p class="video-cap">Личное видео автора</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACTS ===== -->
+  <section class="section" id="contacts">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Связаться с нами</p>
+        <h2 class="h2">Остались вопросы?</h2>
+        <p class="lead">Хотите узнать больше, прежде чем начать? Нужен личный созвон? Напишите нам в удобном для вас мессенджере или загляните в сообщество ВКонтакте.</p>
+      </div>
+      <div class="contacts-grid">
+        <div class="contact-card reveal">
+          <img class="contact-qr-img" src="qr-telegram.png" alt="QR-код Telegram TrustLeads">
+          <div class="contact-name">Telegram</div>
+          <a href="#" target="_blank" rel="noopener" class="contact-btn" data-link="telegram">Открыть в Telegram</a>
+        </div>
+        <div class="contact-card reveal" style="transition-delay:.1s">
+          <img class="contact-qr-img" src="qr-max.png" alt="QR-код MAX TrustLeads">
+          <div class="contact-name">MAX</div>
+          <a href="#" target="_blank" rel="noopener" class="contact-btn" data-link="max">Открыть в MAX</a>
+        </div>
+        <div class="contact-card reveal" style="transition-delay:.2s">
+          <img class="contact-qr-img" src="qr-vk.png" alt="QR-код ВКонтакте TrustLeads">
+          <div class="contact-name">ВКонтакте</div>
+          <a href="#" target="_blank" rel="noopener" class="contact-btn" data-link="vk">Перейти в сообщество</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Вопросы и ответы</p>
+        <h2 class="h2">Часто задаваемые вопросы</h2>
+      </div>
+      <div class="faq" id="faqList"></div>
+    </div>
+  </section>
+
+  <!-- ===== JOIN CTA ===== -->
+  <section class="cta-section">
+    <div class="cta-panel reveal">
+      <h2>Готовы начать зарабатывать?</h2>
+      <p>Присоединяйтесь к проекту — это бесплатно и без рисков.</p>
+      <button type="button" class="btn btn-grad btn-cta" data-open-modal>Присоединиться к проекту →</button>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-cube"></div>
+        <span>Траст Лидс</span>
+      </div>
+      <a href="#" target="_blank" rel="noopener" class="footer-vk" data-link="vk">Сообщество во ВКонтакте →</a>
+      <span class="copy">© 2026 Траст Лидс</span>
+    </div>
+  </footer>
+
+  <!-- ===== JOIN MODAL ===== -->
+  <div class="overlay" id="overlay">
+    <div class="modal" id="modal">
+      <div class="modal-head">
+        <div>
+          <h3>Присоединиться к проекту</h3>
+          <p>Пройдите два простых шага, чтобы начать.</p>
+        </div>
+        <button type="button" class="modal-close" data-close-modal aria-label="Закрыть">✕</button>
+      </div>
+
+      <!-- STEP 1: agreement -->
+      <div class="agree-box">
+        <div class="agree-row">
+          <div class="checkbox" id="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div style="flex:1">
+            <label class="agree-label" id="agreeLabel">Я ознакомлен(а) с условиями и принимаю <a href="#" target="_blank" rel="noopener" data-link="oferta">ОФЕРТУ</a>.</label>
+            <button type="button" class="oferta-toggle" id="ofertaToggle">Читать текст оферты</button>
+            <div class="oferta-panel"><div data-oferta-body><p>Текст оферты появится здесь.</p></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: service selection (locked until agreed) -->
+      <div class="services-zone">
+        <div class="lock-badge"><span>🔒 Отметьте чек-бокс, чтобы разблокировать</span></div>
+        <div class="services">
+          <h4>Выберите сервис для регистрации ИП</h4>
+          <p class="services-sub">Перед выбором сервиса ознакомьтесь с порядком регистрации.</p>
+
+          <div class="reg-info">
+            <p><strong>Шаг 1 — статус для работы.</strong> Чтобы открыть ИП на НПД (налог на профессиональный доход), нужно уже быть самозанятым. Оформить самозанятость (СМЗ) можно в приложении «Мой налог» или в мобильном приложении любого банка — дождитесь одобрения и переходите к регистрации ИП.</p>
+            <p><strong>Альтернатива.</strong> При регистрации ИП можно выбрать режим <strong>АУСН «Доходы»</strong>: чеки создавать не нужно, налоговая сама считает налог по ставке 8&nbsp;%, нет отчётности, деклараций и страховых взносов.</p>
+            <p><a href="#" target="_blank" rel="noopener" class="instruction-link" data-link="instruction">📄 Инструкция по регистрации ИП →</a></p>
+            <p class="reg-note">Инструкция показана на примере сервиса регистрации бизнеса <strong>Альфа-Банка</strong>. Так как выездной сервис Альфа-Банка временно не работает, рекомендуем сервисы ниже — этапы регистрации в них практически не отличаются, всё заполняется аналогично. Указывайте ОКВЭД <strong>73.11</strong> и <strong>78.10</strong> (остальные из инструкции — по желанию, необязательно), режим налогообложения — <strong>НПД</strong> или <strong>АУСН</strong> (в зависимости от выбранного).</p>
+          </div>
+
+          <div class="service-list" id="serviceList"></div>
+
+          <div class="have-ip">
+            <div class="have-ip-title">Уже есть ИП?</div>
+            <p>Напишите в сообщество ВКонтакте, что у вас уже открыт ИП, и укажите ваш режим налогообложения (НПД / АУСН / УСН и т.&nbsp;п.) — мы подскажем дальнейшие шаги.</p>
+            <a href="#" target="_blank" rel="noopener" class="have-ip-btn" data-link="vk-message">✉️ Написать в сообщество</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: VK -->
+      <a href="#" target="_blank" rel="noopener" class="vk-btn" data-link="vk">💬 Сообщество проекта во ВКонтакте</a>
+    </div>
+  </div>
+
+  <!-- ===== REGISTRATION FORM MODAL (ВТБ) ===== -->
+  <div class="overlay" id="formOverlay">
+    <div class="modal form-modal" id="formModal">
+      <div class="modal-head">
+        <div>
+          <h3>Заявка на регистрацию ИП</h3>
+          <p id="formBankLabel">Банк: ВТБ</p>
+        </div>
+        <button type="button" class="modal-close" data-close-form aria-label="Закрыть">✕</button>
+      </div>
+
+      <form id="regForm" novalidate>
+        <div class="field">
+          <label for="f-fio">ФИО контактного лица *</label>
+          <input id="f-fio" name="fio" required autocomplete="name" placeholder="Иванов Иван Иванович">
+        </div>
+        <div class="field">
+          <label for="f-phone">Телефон контактного лица *</label>
+          <input id="f-phone" name="phone" type="tel" required autocomplete="tel" placeholder="+7 (___) ___-__-__">
+        </div>
+        <div class="field">
+          <label for="f-email">E-mail контактного лица *</label>
+          <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="mail@example.com">
+        </div>
+        <div class="field">
+          <label for="f-city">Город</label>
+          <input id="f-city" name="city" autocomplete="address-level2" placeholder="Город">
+        </div>
+        <label class="consent"><input type="checkbox" id="formConsent"> Я даю согласие на обработку персональных данных</label>
+        <div class="form-msg" id="formMsg"></div>
+        <button type="submit" class="btn btn-grad form-submit" id="formSubmit">Отправить заявку</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ===================================================================
+   НАСТРОЙКИ — заполните ссылки и тексты здесь. Пустая строка ("")
+   оставляет плейсхолдер: кнопка/ссылка будет неактивной.
+   =================================================================== */
+const CONFIG = {
+  // Ссылка на сообщество во ВКонтакте
+  vkUrl: "https://vk.ru/trustleadscompany",
+  // Ссылка «написать сообщение сообществу» ВКонтакте (напр. https://vk.com/write-123456789)
+  vkMessageUrl: "https://vk.ru/trustleadscompany",
+
+  // Оферта (PDF лежит в web/). Ссылка «ОФЕРТА» открывает документ, а в модалке он встроен для чтения.
+  ofertaUrl: "oferta-trustleads.pdf",
+  // Текст оферты (HTML). Если задан — показывается ВМЕСТО встроенного PDF. Пусто — встраивается PDF из ofertaUrl.
+  ofertaText: "",
+
+  // Ссылка на инструкцию по регистрации ИП (откроется в новой вкладке)
+  instructionUrl: "https://clck.ru/3R2hsY",
+
+  // Видео. Вставьте URL для встраивания (embed), напр. YouTube: https://www.youtube.com/embed/XXXX
+  // Пусто — останется красивый плейсхолдер с кнопкой play.
+  video1Url: "video/cpa-trustleads.mp4",
+  video2Url: "",
+
+  // Контакты (блок «Остались вопросы?»). Ссылки на мессенджеры под QR-кодами.
+  telegramUrl: "https://t.me/TRUSTLEADSHUB",
+  maxUrl: "https://max.ru/u/f9LHodD0cOKtZ60l2pmxEGOJVHSLsEyPEZePHf1pSg-pUQlcPm8vT_pxGcQ",
+
+  // Эндпоинт Google Apps Script для приёма заявок ВТБ в Google-таблицу.
+  // Как получить — см. web/README.md (раздел «Форма заявки ВТБ»). Пусто — приём выключен.
+  vtbFormEndpoint: "",
+
+  // Сервисы регистрации ИП. mode: "link" — открыть ссылку; "form" — форма заявки;
+  // "disabled" — показать сообщение message.
+  services: [
+    { name: "Сервис 1 (Озон Банк)", desc: "Регистрация ИП через сервис банка.", tariff: "При оформлении выбирайте тариф «Начальный».", mode: "link", url: "https://ozon.ru/fintech/promo/ref/YD5QBTBRO" },
+    { name: "Сервис 2 (СберБанк)",  desc: "Регистрация ИП через сервис банка.", tariff: "Выбирайте бесплатный тариф — обслуживание 0 ₽.", mode: "link", url: "https://www.sberbank.com/ru/s_m_business/referral/reg?utm_source=0NVB19CJEHGKZ" },
+    { name: "Сервис 3 (ВТБ)",       desc: "Заявку оформляем через агента — заполните форму, мы свяжемся с вами.", tariff: "Выбирайте тариф «Простой процент».", mode: "form" },
+    { name: "Сервис 4 (Альфа-Банк)", desc: "Регистрация ИП через сервис банка.", mode: "disabled", message: "Сервис регистрации бизнеса данного банка временно приостановлен — выберите альтернативные варианты." },
+  ],
+
+  // Отзывы участников. avatar — буква/символ кружка (по умолчанию первая буква имени).
+  reviews: [
+    { name: "Артур Залялиев", meta: "Участник проекта", stars: 5,
+      text: "Замечательная платформа! Уже на второй месяц сотрудничества с TrustLeads увеличил доход в 1,5 раза. Отличный вариант, чтобы стартовать с нуля: лёгкий старт, финансирование, нужная информация и рабочие инструменты." },
+    { name: "Даниил", meta: "Участник проекта", stars: 5,
+      text: "Команда даёт мощный толчок в начале пути и в мотивации. Очень много полезного контента и поддержка 24/7. Сложно представить, где могло бы быть лучше." },
+    { name: "Руслан", meta: "Партнёр проекта", stars: 5,
+      text: "Сильная база, которую самому собирать долго и затратно, плюс обратная связь и консультации на каждом шаге. Видно, что команда вкладывается по-настоящему." },
+    { name: "Участник из Уфы", meta: "Отзыв, 2026", stars: 5, avatar: "★",
+      text: "Нравится свобода в выборе графика, отзывчивость команды и помощь в работе 24/7. Обучение выстроено поэтапно, есть понятная система вознаграждений." },
+    { name: "Участник из Ульяновска", meta: "Отзыв, 2026", stars: 5, avatar: "★",
+      text: "Свобода в графике, интересная работа и доход без потолка — именно то, что искал. Всё прозрачно и по делу." },
+    { name: "Участник сообщества", meta: "Отзыв, 2026", stars: 5, avatar: "★",
+      text: "Сразу видно, что проект делается от души. Результат говорит сам за себя — команда большие молодцы." },
+  ],
+
+  // Часто задаваемые вопросы. Замените вопросы/ответы на свои, можно добавлять/удалять пункты.
+  faq: [
+    { q: "Нужны ли вложения, чтобы начать?",
+      a: "<p>На старте вложения не нужны. Наши специалисты подобрали инструменты, которые позволяют бесплатно пользоваться крупными агрегаторами вакансий — HeadHunter (hh.ru) и Работа.ру.</p><p>Если захотите масштабироваться, вложения могут понадобиться — например, для размещения на Авито. В наших материалах есть инструкция, как оформить аккаунт АвитоПро: с 2025 года вакансии на Авито можно публиковать только с таким аккаунтом, а для его подтверждения нужно банковское бизнес-приложение с открытым расчётным счётом ИП.</p>" },
+    { q: "Нужно ли регистрировать ИП и зачем это нужно?",
+      a: "<p>Да, ИП необходимо: без него нельзя публиковать вакансии на джоб-площадках и классифайдах. Все площадки — HeadHunter, Работа.ру, Авито — требуют статус ИП для размещения вакансий.</p>" },
+    { q: "Какой режим налогообложения выбрать?",
+      a: "<p>Можно выбрать <strong>НПД</strong> или <strong>АУСН</strong>.</p><p><strong>НПД</strong> — налог на профессиональный доход (налог самозанятого). ИП на НПД остаётся тем же самозанятым: то же приложение «Мой налог», тот же статус СМЗ. Статус ИП — это просто запись в реестре, которая расширяет возможности: даёт расчётный счёт ИП, необходимый для подтверждения на площадках. Ставка прежняя — 4–6% от дохода, без походов в налоговую, деклараций и бухгалтерии.</p><p><strong>АУСН</strong> — автоматизированная упрощённая система (нужен вариант «Доходы»). Ставка 8%, но чеки формировать не нужно: банк сам размечает операции и фиксирует налогооблагаемый доход (поступления от ИП/ООО, вывод средств с партнёрских платформ). Переводы между своими счетами и пополнения с личных карт доходом не считаются и налогом не облагаются.</p><p>Рекомендуем открывать счёт в банках с обслуживанием 0 ₽ — платные тарифы не нужны. В бизнес-приложениях часто есть бонусы: бесплатная вакансия на hh.ru, ежемесячная публикация на Работа.ру, «Альфа-Пятница», повышенный кэшбэк (например, 10% на топливо в Сбере) и др.</p>" },
+    { q: "А если я уже ИП? А если я на другом режиме налогообложения?",
+      a: "<p>Если вы уже ИП — считайте, что сможете начать буквально за 2–3 дня. Всё, что нужно, — подготовить инструменты (аккаунты на площадках и партнёрках), красиво оформить и выложить. Готово!</p><p>Вид налогообложения значения не имеет — хоть УСН, хоть ПСН, хоть ОСНО. Рекомендации по НПД и АУСН даны для обычных физлиц, которые не хотят бумажной волокиты, бухгалтерии, страховых взносов, НДС и прочих «страшных вещей».</p><p>Важно: если вы уже ИП, но у вас нет ОКВЭД <strong>73.11</strong> и <strong>78.10</strong> — рекомендуем добавить их (можно до конца года через налоговую), чтобы доход с партнёрок (он регулируется как раз этими ОКВЭД) соответствовал вашей деятельности. Иначе у налоговой рано или поздно возникнет вопрос: например, ОКВЭД — «парикмахерские услуги», а доход приходит от партнёрской платформы с назначением «за привлечение целевых действий по договору…, без налога (НДС)». Вид деятельности один, а доход «не по теме».</p>" },
+    { q: "Нужен ли опыт в арбитраже трафика?",
+      a: "<p>Опыт не нужен — даже если вы никогда не работали в этом направлении. Мы даём исчерпывающую информацию и пошаговые материалы: справится любой новичок.</p>" },
+    { q: "Сколько можно зарабатывать?",
+      a: "<p>Заработок зависит от количества успешных конверсий — целевых действий кандидатов по офферу (трудоустройство, валидная заявка, трудоустройство с отработкой 5 смен; в финансовой вертикали — например, покупка по дебетовой карте).</p><p>Пример: если ставка по офферу 5 000 ₽ за трудоустроенного кандидата и по вашей вакансии устроится 7 человек — вы заработаете 35 000 ₽. Чем больше работающих предложений, тем выше потенциальный доход.</p><p>Мы всегда подсказываем и помогаем, а также даём советы по дополнительным заработкам — можно рекомендовать знакомым вакансии, банковские карты и другое. Многие участники, просто пройдясь по друзьям и родственникам, зарабатывали по 50–60 тысяч рублей — это вполне реально.</p>" },
+    { q: "Как рекламодатель понимает, что кандидат пришёл по моей ссылке?",
+      a: "<p>Рекламодатель понимает, что заявка пришла от вас, благодаря партнёрской (реферальной) ссылке. Всё просто: в личном кабинете на партнёрке вы выбираете оффер, читаете описание, берёте креативы и делаете публикацию.</p><p>Когда к вам обращается кандидат с намерением трудоустроиться или оформиться, есть два варианта: либо мы даём ему вашу партнёрскую ссылку из личного кабинета, либо (если в карточке оффера разрешён брокерский трафик) заполняем заявку за него, перейдя по вашей ссылке.</p><p>Пример: акция «Пригласи друга» в Т-Банке — «порекомендуйте дебетовую карту другу и получите 3000 ₽». Вы отправляете другу свою ссылку, он оформляет карту, а вам начисляют 3000 ₽. Как банк понял, что человека привели именно вы? По реферальному коду в вашей ссылке — здесь работает тот же принцип.</p>" },
+    { q: "Как и когда выплачивается вознаграждение?",
+      a: "<p>Начисление за успешные конверсии — не моментальное. После того как лид выполнил целевое действие, мы ждём подтверждения (апрув) от рекламодателя: кто-то подтверждает раз в месяц, кто-то дважды, и т.д.</p><p>После подтверждения конверсия отображается в личном кабинете, но сразу вывести средства нельзя — они в «холде». Холд — это период между апрувом и доступностью денег к выводу. У разных рекламодателей он разный: от 7 до 30 дней. В HR-вертикали по большинству офферов холд составляет 14 дней.</p>" },
+    { q: "Есть ли финансовые или юридические риски?",
+      a: "<p>Финансовых рисков нет: на старте вы сами решаете — вкладывать личные средства или нет. Есть бесплатные инструменты, поэтому вложения необязательны. Если же желание и возможность есть, то даже 3 000 ₽ на тариф «за отклики» на АвитоПро (мы помогаем его подключить) хватает на 2–3 недели публикаций множества вакансий.</p><p>Юридических рисков тоже нет: вы получаете официальный прозрачный доход от юридических лиц — партнёрских платформ — на расчётный счёт и платите налог (НПД 6% / АУСН 8%).</p>" },
+    { q: "Смогу ли я потом закрыть ИП? Сложно ли его закрывать?",
+      a: "<p>Если решите больше не работать в этом направлении — заверяем: морочиться с закрытием ИП нет смысла. На НПД или АУСН нет никакой отчётности, поэтому можно оставаться ИП годами — вас никто никуда не вызовет и ничего не потребует. Не получаете доход — не формируете чеки. Живёте обычной жизнью: можете спокойно работать по трудовому договору и получать зарплату, а работодатель сам удерживает 13% НДФЛ и платит за вас страховые взносы.</p><p>Но если принципиально хотите закрыть ИП — это просто:</p><ol><li>Подайте заявление по форме Р26001 (есть в интернете — распечатать и заполнить) в МФЦ.</li><li>Закройте расчётные счета: в банковском приложении выберите «Закрыть счёт» или напишите в поддержку.</li></ol><p>Запись из реестра ИП удаляется в течение 7 дней после подачи заявления.</p>" },
+  ],
+
+  // Космический фон
+  showStars: true,
+  parallax: true,
+  starDensity: 190, // 40..400
+};
+
+(function () {
+  "use strict";
+
+  /* ---------- apply CONFIG links ---------- */
+  function wireLink(el, url) {
+    if (url) {
+      el.setAttribute("href", url);
+      el.classList.remove("link-disabled");
+    } else {
+      el.setAttribute("href", "#");
+      el.classList.add("link-disabled");
+      el.addEventListener("click", function (e) { e.preventDefault(); });
+    }
+  }
+  document.querySelectorAll('[data-link="vk"]').forEach(function (el) { wireLink(el, CONFIG.vkUrl); });
+  document.querySelectorAll('[data-link="vk-message"]').forEach(function (el) { wireLink(el, CONFIG.vkMessageUrl); });
+  document.querySelectorAll('[data-link="oferta"]').forEach(function (el) {
+    wireLink(el, CONFIG.ofertaUrl);
+    el.addEventListener("click", function (e) { e.stopPropagation(); });
+  });
+  document.querySelectorAll('[data-link="instruction"]').forEach(function (el) {
+    wireLink(el, CONFIG.instructionUrl);
+    el.addEventListener("click", function (e) { e.stopPropagation(); });
+  });
+  (function setupOferta() {
+    var body = document.querySelector("[data-oferta-body]");
+    if (!body) return;
+    if (CONFIG.ofertaText) {
+      body.innerHTML = CONFIG.ofertaText;
+    } else if (/\.pdf(\?.*)?$/i.test(CONFIG.ofertaUrl || "")) {
+      body.innerHTML = "";
+      var fr = document.createElement("iframe");
+      fr.src = CONFIG.ofertaUrl + "#view=FitH";
+      fr.className = "oferta-pdf";
+      fr.title = "Текст оферты";
+      body.appendChild(fr);
+      document.getElementById("modal").classList.add("oferta-has-pdf");
+    }
+  })();
+
+  /* ---------- render services ---------- */
+  var list = document.getElementById("serviceList");
+  (CONFIG.services || []).forEach(function (s) {
+    var row = document.createElement("div");
+    row.className = "service";
+    var info = document.createElement("div");
+    info.className = "service-info";
+    info.innerHTML = '<div class="service-name"></div><div class="service-desc"></div>';
+    info.querySelector(".service-name").textContent = s.name || "";
+    info.querySelector(".service-desc").textContent = s.desc || "";
+    if (s.tariff) {
+      var tEl = document.createElement("div");
+      tEl.className = "service-tariff";
+      tEl.textContent = "💡 " + s.tariff;
+      info.appendChild(tEl);
+    }
+    row.appendChild(info);
+
+    if (s.mode === "form") {
+      var fb = document.createElement("button");
+      fb.type = "button";
+      fb.className = "service-btn";
+      fb.textContent = "Оформить заявку";
+      fb.addEventListener("click", function () { openForm(s.name); });
+      row.appendChild(fb);
+    } else if (s.mode === "disabled") {
+      var db = document.createElement("button");
+      db.type = "button";
+      db.className = "service-btn service-btn-muted";
+      db.textContent = "Открыть";
+      var note = document.createElement("div");
+      note.className = "service-note";
+      note.textContent = s.message || "Сервис временно недоступен.";
+      db.addEventListener("click", function () { note.classList.toggle("show"); });
+      row.appendChild(db);
+      row.appendChild(note);
+    } else {
+      var a = document.createElement("a");
+      a.className = "service-btn";
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = "Открыть";
+      wireLink(a, s.url);
+      row.appendChild(a);
+    }
+    list.appendChild(row);
+  });
+
+  /* ---------- reviews ---------- */
+  var reviewsGrid = document.getElementById("reviewsGrid");
+  if (reviewsGrid) {
+    (CONFIG.reviews || []).forEach(function (r, i) {
+      var n = Math.max(0, Math.min(5, r.stars || 5));
+      var card = document.createElement("div");
+      card.className = "review-card reveal";
+      card.style.transitionDelay = (0.05 * (i % 3)) + "s";
+      var stars = document.createElement("div");
+      stars.className = "stars";
+      stars.textContent = "★★★★★".slice(0, n) + "☆☆☆☆☆".slice(0, 5 - n);
+      var text = document.createElement("p");
+      text.className = "review-text";
+      text.textContent = "«" + (r.text || "") + "»";
+      var author = document.createElement("div");
+      author.className = "review-author";
+      var av = document.createElement("div");
+      av.className = "review-avatar";
+      av.textContent = r.avatar || ((r.name || "?").trim().charAt(0).toUpperCase());
+      var meta = document.createElement("div");
+      meta.innerHTML = '<div class="review-name"></div><div class="review-meta"></div>';
+      meta.querySelector(".review-name").textContent = r.name || "";
+      meta.querySelector(".review-meta").textContent = r.meta || "";
+      author.appendChild(av);
+      author.appendChild(meta);
+      card.appendChild(stars);
+      card.appendChild(text);
+      card.appendChild(author);
+      reviewsGrid.appendChild(card);
+    });
+  }
+
+  /* ---------- faq ---------- */
+  var faqList = document.getElementById("faqList");
+  if (faqList) {
+    (CONFIG.faq || []).forEach(function (item) {
+      var el = document.createElement("div");
+      el.className = "faq-item reveal";
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "faq-q";
+      var q = document.createElement("span");
+      q.textContent = item.q || "";
+      var icon = document.createElement("span");
+      icon.className = "faq-icon";
+      icon.textContent = "+";
+      btn.appendChild(q);
+      btn.appendChild(icon);
+      var ans = document.createElement("div");
+      ans.className = "faq-a";
+      var body = document.createElement("div");
+      body.className = "faq-answer";
+      body.innerHTML = item.a || "";
+      ans.appendChild(body);
+      btn.addEventListener("click", function () {
+        var isOpen = el.classList.toggle("open");
+        ans.style.maxHeight = isOpen ? (ans.scrollHeight + "px") : "0px";
+      });
+      el.appendChild(btn);
+      el.appendChild(ans);
+      faqList.appendChild(el);
+    });
+  }
+
+  /* ---------- videos ---------- */
+  function mountVideo(sel, url) {
+    if (!url) return;
+    var frame = document.querySelector(sel);
+    if (!frame) return;
+    frame.innerHTML = "";
+    // локальный файл (.mp4/.webm/.ogg/.mov) -> HTML5 <video>; иначе встраивание через <iframe>
+    if (/\.(mp4|webm|ogg|mov|m4v)(\?.*)?$/i.test(url)) {
+      var video = document.createElement("video");
+      video.src = url;
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+      frame.appendChild(video);
+    } else {
+      var iframe = document.createElement("iframe");
+      iframe.src = url;
+      iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+      iframe.setAttribute("allowfullscreen", "");
+      frame.appendChild(iframe);
+    }
+  }
+  mountVideo('[data-video="1"]', CONFIG.video1Url);
+  mountVideo('[data-video="2"]', CONFIG.video2Url);
+
+  /* ---------- contacts ---------- */
+  document.querySelectorAll('[data-link="telegram"]').forEach(function (el) { wireLink(el, CONFIG.telegramUrl); });
+  document.querySelectorAll('[data-link="max"]').forEach(function (el) { wireLink(el, CONFIG.maxUrl); });
+  document.querySelectorAll(".contact-qr-img").forEach(function (img) {
+    img.addEventListener("error", function () {
+      var ph = document.createElement("div");
+      ph.className = "qr-ph";
+      ph.textContent = "QR-код появится здесь";
+      if (img.parentNode) img.parentNode.replaceChild(ph, img);
+    });
+  });
+
+  /* ---------- nav burger ---------- */
+  var navBurger = document.getElementById("navBurger");
+  var navLinks = document.getElementById("navLinks");
+  if (navBurger && navLinks) {
+    navBurger.addEventListener("click", function (e) { e.stopPropagation(); navLinks.classList.toggle("open"); });
+    navLinks.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { navLinks.classList.remove("open"); }); });
+    document.addEventListener("click", function (e) {
+      if (navLinks.classList.contains("open") && !navLinks.contains(e.target) && e.target !== navBurger) navLinks.classList.remove("open");
+    });
+  }
+
+  /* ---------- side nav (scroll dots) ---------- */
+  var sideNav = document.getElementById("sidenav");
+  if (sideNav) {
+    var dots = Array.prototype.slice.call(sideNav.querySelectorAll(".sidenav-dot"));
+    var spySections = dots.map(function (d) { return document.getElementById(d.getAttribute("data-target")); }).filter(Boolean);
+    window.addEventListener("scroll", function () {
+      if ((window.scrollY || window.pageYOffset) > window.innerHeight * 0.6) sideNav.classList.add("visible");
+      else sideNav.classList.remove("visible");
+    }, { passive: true });
+    if ("IntersectionObserver" in window) {
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) {
+            var id = en.target.id;
+            dots.forEach(function (d) { d.classList.toggle("active", d.getAttribute("data-target") === id); });
+          }
+        });
+      }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+      spySections.forEach(function (s) { spy.observe(s); });
+    }
+    dots.forEach(function (d) { d.addEventListener("click", function () { if (navLinks) navLinks.classList.remove("open"); }); });
+  }
+
+  /* ---------- modal ---------- */
+  var overlay = document.getElementById("overlay");
+  var modal = document.getElementById("modal");
+  var checkbox = document.getElementById("checkbox");
+  var ofertaToggle = document.getElementById("ofertaToggle");
+
+  function openModal() { overlay.classList.add("open"); document.body.style.overflow = "hidden"; }
+  function closeModal() { overlay.classList.remove("open"); document.body.style.overflow = ""; }
+
+  document.querySelectorAll("[data-open-modal]").forEach(function (b) { b.addEventListener("click", openModal); });
+  document.querySelectorAll("[data-close-modal]").forEach(function (b) { b.addEventListener("click", closeModal); });
+  overlay.addEventListener("click", closeModal);
+  modal.addEventListener("click", function (e) { e.stopPropagation(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    if (formOverlay.classList.contains("open")) closeForm();
+    else closeModal();
+  });
+
+  function toggleAgreed() {
+    var on = modal.classList.toggle("agreed");
+    checkbox.setAttribute("aria-checked", on ? "true" : "false");
+  }
+  checkbox.addEventListener("click", toggleAgreed);
+  checkbox.addEventListener("keydown", function (e) { if (e.key === " " || e.key === "Enter") { e.preventDefault(); toggleAgreed(); } });
+  document.getElementById("agreeLabel").addEventListener("click", function (e) {
+    if (e.target.closest("a")) return; // не перехватываем клик по ссылке ОФЕРТА
+    toggleAgreed();
+  });
+  ofertaToggle.addEventListener("click", function () {
+    var on = modal.classList.toggle("oferta-open");
+    ofertaToggle.textContent = on ? "Скрыть текст оферты" : "Читать текст оферты";
+  });
+
+  /* ---------- registration form (ВТБ) ---------- */
+  var formOverlay = document.getElementById("formOverlay");
+  var formModal = document.getElementById("formModal");
+  var regForm = document.getElementById("regForm");
+  var formMsg = document.getElementById("formMsg");
+  var formSubmit = document.getElementById("formSubmit");
+  var formConsent = document.getElementById("formConsent");
+  var phoneInput = document.getElementById("f-phone");
+  var currentBank = "ВТБ";
+
+  function openForm(bankName) {
+    // "Сервис 3 (ВТБ)" -> "ВТБ"
+    var m = (bankName || "").match(/\(([^)]+)\)/);
+    currentBank = m ? m[1] : (bankName || "ВТБ");
+    document.getElementById("formBankLabel").textContent = "Банк: " + currentBank;
+    formMsg.textContent = ""; formMsg.className = "form-msg";
+    formOverlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+  function closeForm() {
+    formOverlay.classList.remove("open");
+    // тело остаётся заблокированным, т.к. под формой открыта основная модалка
+    if (!overlay.classList.contains("open")) document.body.style.overflow = "";
+  }
+  document.querySelectorAll("[data-close-form]").forEach(function (b) { b.addEventListener("click", closeForm); });
+  formOverlay.addEventListener("click", closeForm);
+  formModal.addEventListener("click", function (e) { e.stopPropagation(); });
+
+  // простая маска телефона
+  phoneInput.addEventListener("input", function () {
+    var d = this.value.replace(/\D/g, "");
+    if (d[0] === "8") d = "7" + d.slice(1);
+    if (d[0] !== "7") d = "7" + d;
+    d = d.slice(0, 11);
+    var out = "+7";
+    if (d.length > 1) out += " (" + d.slice(1, 4);
+    if (d.length >= 4) out += ") " + d.slice(4, 7);
+    if (d.length >= 7) out += "-" + d.slice(7, 9);
+    if (d.length >= 9) out += "-" + d.slice(9, 11);
+    this.value = out;
+  });
+
+  function showFormMsg(text, type) { formMsg.textContent = text; formMsg.className = "form-msg " + type; }
+
+  regForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var fio = document.getElementById("f-fio").value.trim();
+    var phone = phoneInput.value.trim();
+    var email = document.getElementById("f-email").value.trim();
+    var city = document.getElementById("f-city").value.trim();
+
+    if (!fio || !phone || !email) { showFormMsg("Заполните все обязательные поля (отмечены *).", "error"); return; }
+    if (phone.replace(/\D/g, "").length < 11) { showFormMsg("Введите корректный номер телефона.", "error"); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showFormMsg("Введите корректный e-mail.", "error"); return; }
+    if (!formConsent.checked) { showFormMsg("Поставьте галочку согласия на обработку персональных данных.", "error"); return; }
+    if (!CONFIG.vtbFormEndpoint) { showFormMsg("Приём заявок ещё не подключён. Напишите нам во ВКонтакте.", "error"); return; }
+
+    var data = new URLSearchParams({ bank: currentBank, fio: fio, phone: phone, email: email, city: city });
+    formSubmit.disabled = true; formSubmit.textContent = "Отправляем…"; showFormMsg("", "");
+    fetch(CONFIG.vtbFormEndpoint, { method: "POST", mode: "no-cors", body: data })
+      .then(function () {
+        showFormMsg("Заявка отправлена! Мы свяжемся с вами для регистрации.", "success");
+        regForm.reset();
+      })
+      .catch(function () { showFormMsg("Не удалось отправить. Попробуйте позже.", "error"); })
+      .finally(function () { formSubmit.disabled = false; formSubmit.textContent = "Отправить заявку"; });
+  });
+
+  /* ---------- scroll reveal ---------- */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  function show(el) { el.classList.add("show"); }
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { show(en.target); io.unobserve(en.target); } });
+    }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(show);
+  }
+  // показать всё, что уже во вьюпорте при загрузке
+  (function initialReveal() {
+    var vh = window.innerHeight;
+    revealEls.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < vh * 0.92 && r.bottom > 0) show(el);
+    });
+  })();
+
+  /* ---------- journey line fill on scroll ---------- */
+  var journey = document.getElementById("journey");
+  var fill = document.getElementById("railFill");
+  function updateJourney() {
+    if (!journey || !fill) return;
+    var r = journey.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var start = vh * 0.78;
+    var p = (start - r.top) / (r.height * 0.82);
+    p = Math.max(0, Math.min(1, p));
+    fill.style.height = (p * 100) + "%";
+  }
+
+  /* ---------- starfield ---------- */
+  var canvas = document.getElementById("stars");
+  var stars = [], W = 0, H = 0, raf = null, scrollY = 0;
+  function resizeCanvas() {
+    if (!canvas) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.getContext("2d").setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function initStars() {
+    if (!canvas || !CONFIG.showStars) { if (canvas) canvas.style.display = "none"; return; }
+    var ctx = canvas.getContext("2d");
+    resizeCanvas();
+    var count = Math.max(40, Math.min(400, CONFIG.starDensity || 190));
+    stars = [];
+    for (var i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * W,
+        y: Math.random() * H * 1.6,
+        r: Math.random() * 1.6 + 0.3,
+        depth: Math.random() * 0.8 + 0.2,
+        ph: Math.random() * Math.PI * 2,
+        sp: Math.random() * 0.5 + 0.3
+      });
+    }
+    scrollY = window.scrollY || 0;
+    var par = CONFIG.parallax !== false;
+    function tick(t) {
+      ctx.clearRect(0, 0, W, H);
+      var time = t * 0.001;
+      for (var k = 0; k < stars.length; k++) {
+        var s = stars[k];
+        var off = par ? scrollY * s.depth * 0.25 : 0;
+        var y = (s.y - off) % (H * 1.6);
+        if (y < 0) y += H * 1.6;
+        if (y > H + 4) continue;
+        var a = 0.35 + 0.45 * Math.sin(time * s.sp + s.ph);
+        ctx.globalAlpha = Math.max(0.08, a);
+        var col = s.depth > 0.7 ? "180,210,255" : (s.depth > 0.45 ? "190,160,255" : "150,120,230");
+        ctx.fillStyle = "rgba(" + col + ",1)";
+        ctx.beginPath(); ctx.arc(s.x, y, s.r, 0, Math.PI * 2); ctx.fill();
+        if (s.r > 1.2) { ctx.globalAlpha = Math.max(0.04, a * 0.4); ctx.beginPath(); ctx.arc(s.x, y, s.r * 3, 0, Math.PI * 2); ctx.fill(); }
+      }
+      ctx.globalAlpha = 1;
+      raf = requestAnimationFrame(tick);
+    }
+    raf = requestAnimationFrame(tick);
+  }
+
+  /* ---------- listeners ---------- */
+  window.addEventListener("scroll", function () {
+    scrollY = window.scrollY || window.pageYOffset;
+    updateJourney();
+  }, { passive: true });
+  window.addEventListener("resize", resizeCanvas);
+
+  initStars();
+  updateJourney();
+})();
+</script>
+</body>
+</html>
