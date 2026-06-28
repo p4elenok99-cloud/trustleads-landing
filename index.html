@@ -194,6 +194,20 @@
   .cta-panel h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4.8vw,56px);line-height:1.08;letter-spacing:-1px;color:#fff;margin-bottom:18px}
   .cta-panel p{font-size:clamp(15px,1.8vw,19px);line-height:1.6;color:var(--text2);margin-bottom:36px}
 
+  /* ===== results / proof fan ===== */
+  .fan{position:relative;height:clamp(300px,40vw,440px);display:flex;align-items:center;justify-content:center;margin-top:24px}
+  .fan-card{position:absolute;width:clamp(230px,29vw,360px);border-radius:18px;overflow:hidden;cursor:pointer;text-decoration:none;background:rgba(124,58,237,.1);border:1px solid rgba(167,139,250,.3);box-shadow:0 18px 50px rgba(10,1,24,.6);transform-origin:50% 135%;transform:rotate(var(--rot,0deg)) translateX(var(--tx,0)) translateY(var(--ty,0)) scale(var(--sc,1));transition:transform .55s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .4s}
+  .fan-card img{display:block;width:100%;height:auto}
+  .fan:hover .fan-card{transform:rotate(var(--rot-o,0deg)) translateX(var(--tx-o,0)) translateY(var(--ty-o,0)) scale(var(--sc,1))}
+  .fan-card:hover{--sc:1.06;z-index:300!important;border-color:rgba(34,211,238,.7);box-shadow:0 28px 80px rgba(34,211,238,.42)}
+  .fan-cap{position:absolute;left:0;right:0;bottom:0;padding:24px 14px 12px;font-size:13px;font-weight:600;color:#fff;background:linear-gradient(0deg,rgba(8,2,20,.96),rgba(8,2,20,0))}
+  .fan-ph{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;color:var(--lav);font-size:13px;font-weight:600;line-height:1.5}
+  @media (max-width:760px){
+    .fan{flex-direction:column;height:auto;gap:18px;margin-top:18px}
+    .fan-card{position:relative;width:min(440px,94%);transform:none!important;transform-origin:center}
+    .fan-cap{position:static;background:none;padding:10px 2px 0;color:var(--text2)}
+  }
+
   /* ===== footer ===== */
   .footer{position:relative;z-index:1;padding:46px clamp(20px,5vw,40px);border-top:1px solid rgba(167,139,250,.12);background:rgba(10,1,24,.5);backdrop-filter:blur(10px)}
   .footer-inner{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
@@ -312,6 +326,7 @@
       <a href="#reviews">Отзывы</a>
       <a href="#faq">Вопросы</a>
       <a href="#contacts">Контакты</a>
+      <a href="#results">Результаты</a>
     </nav>
     <div class="nav-right">
       <button type="button" class="btn btn-grad btn-nav" data-open-modal>Присоединиться</button>
@@ -328,6 +343,7 @@
     <a href="#reviews" class="sidenav-dot" data-target="reviews"><span class="sidenav-label">Отзывы</span></a>
     <a href="#faq" class="sidenav-dot" data-target="faq"><span class="sidenav-label">Вопросы</span></a>
     <a href="#contacts" class="sidenav-dot" data-target="contacts"><span class="sidenav-label">Контакты</span></a>
+    <a href="#results" class="sidenav-dot" data-target="results"><span class="sidenav-label">Результаты</span></a>
   </nav>
 
   <!-- ===== HERO ===== -->
@@ -554,6 +570,18 @@
     </div>
   </section>
 
+  <!-- ===== RESULTS (proof, fan cards) ===== -->
+  <section class="section" id="results">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Результаты</p>
+        <h2 class="h2" style="margin-bottom:16px">Реальные выплаты и статистика</h2>
+        <p class="lead">Скриншоты из личных кабинетов: конверсии, выплаты и аналитика. Наведите на веер — карточки раскроются. Клик открывает скриншот в полном размере.</p>
+      </div>
+      <div class="fan reveal" id="fan"></div>
+    </div>
+  </section>
+
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="footer-inner">
@@ -678,6 +706,14 @@ const CONFIG = {
   // Пусто — останется красивый плейсхолдер с кнопкой play.
   video1Url: "video/cpa-trustleads.mp4",
   video2Url: "video/cpa-first-commission.mp4",
+
+  // Скриншоты-доказательства (веер карт внизу страницы, блок «Результаты»).
+  // Файлы кладите в web/img/. Можно добавлять/удалять любое число карточек.
+  proofImages: [
+    { src: "img/proof-payouts.png",   caption: "Выплаты и CPA-конверсии" },
+    { src: "img/proof-offers.png",    caption: "Каталог офферов в кабинете" },
+    { src: "img/proof-analytics.png", caption: "Аналитика и доход за период" },
+  ],
 
   // Контакты (блок «Остались вопросы?»). Ссылки на мессенджеры под QR-кодами.
   telegramUrl: "https://t.me/TRUSTLEADSHUB",
@@ -918,6 +954,40 @@ const CONFIG = {
   }
   mountVideo('[data-video="1"]', CONFIG.video1Url);
   mountVideo('[data-video="2"]', CONFIG.video2Url);
+
+  /* ---------- results (proof fan) ---------- */
+  (function () {
+    var fan = document.getElementById("fan");
+    if (!fan) return;
+    var imgs = CONFIG.proofImages || [];
+    if (!imgs.length) { var s = document.getElementById("results"); if (s) s.style.display = "none"; return; }
+    var c = (imgs.length - 1) / 2;
+    imgs.forEach(function (it, i) {
+      var d = i - c;
+      var a = document.createElement("a");
+      a.className = "fan-card";
+      a.href = it.src; a.target = "_blank"; a.rel = "noopener";
+      a.style.setProperty("--rot", (d * 5) + "deg");
+      a.style.setProperty("--tx", (d * 46) + "px");
+      a.style.setProperty("--ty", (Math.abs(d) * 10) + "px");
+      a.style.setProperty("--rot-o", (d * 11) + "deg");
+      a.style.setProperty("--tx-o", (d * 230) + "px");
+      a.style.setProperty("--ty-o", (Math.abs(d) * -6) + "px");
+      a.style.zIndex = String(100 - Math.round(Math.abs(d)));
+      var img = document.createElement("img");
+      img.src = it.src; img.alt = it.caption || ("Скриншот " + (i + 1));
+      img.addEventListener("error", function () {
+        img.remove();
+        var ph = document.createElement("div");
+        ph.className = "fan-ph";
+        ph.textContent = (it.caption || ("Скрин " + (i + 1))) + " — добавьте файл " + it.src;
+        a.insertBefore(ph, a.firstChild);
+      });
+      a.appendChild(img);
+      if (it.caption) { var cap = document.createElement("span"); cap.className = "fan-cap"; cap.textContent = it.caption; a.appendChild(cap); }
+      fan.appendChild(a);
+    });
+  })();
 
   /* ---------- contacts ---------- */
   document.querySelectorAll('[data-link="telegram"]').forEach(function (el) { wireLink(el, CONFIG.telegramUrl); });
