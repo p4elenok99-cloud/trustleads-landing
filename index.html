@@ -707,6 +707,12 @@ const CONFIG = {
   video1Url: "video/cpa-trustleads.mp4",
   video2Url: "video/cpa-first-commission.mp4",
 
+  // Яндекс.Метрика. Вставьте НОМЕР счётчика (только цифры), напр. 99887766.
+  // Пусто ("") — аналитика выключена. Где взять номер — см. web/README.md
+  // (раздел «Яндекс.Метрика»). Счётчик считает посетителей сайта; отдельная
+  // цель "video2_play" — сколько человек ЗАПУСТИЛО второе видео («Как начать?»).
+  metrikaId: "110287041",
+
   // Скриншоты-доказательства (веер карт внизу страницы, блок «Результаты»).
   // Файлы кладите в web/img/. Можно добавлять/удалять любое число карточек.
   proofImages: [
@@ -777,6 +783,27 @@ const CONFIG = {
   parallax: true,
   starDensity: 190, // 40..400
 };
+
+/* ===== Яндекс.Метрика =====
+   Считает посетителей сайта и (через цели) запуски видео.
+   Включается, только когда задан CONFIG.metrikaId (см. выше).
+   Страница отправляет в Метрику две цели типа «JavaScript-событие»:
+     • "video1_play" — запущено первое видео («Обзор проекта»);
+     • "video2_play" — запущено ВТОРОЕ видео («Как начать?»)  ← нужный счётчик.
+   В кабинете Метрики создайте цель с идентификатором video2_play, чтобы
+   видеть число людей, запустивших второе видео. */
+if (CONFIG.metrikaId) {
+  (function (m, e, t, r, i, k, a) {
+    m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+    m[i].l = 1 * new Date();
+    for (var j = 0; j < e.scripts.length; j++) { if (e.scripts[j].src === r) return; }
+    k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r;
+    a.parentNode.insertBefore(k, a);
+  })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+  ym(CONFIG.metrikaId, "init", {
+    clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true
+  });
+}
 
 (function () {
   "use strict";
@@ -930,8 +957,15 @@ const CONFIG = {
     });
   }
 
+  /* ---------- аналитика: отправка цели в Яндекс.Метрику ---------- */
+  function trackGoal(goal) {
+    if (CONFIG.metrikaId && typeof window.ym === "function") {
+      window.ym(CONFIG.metrikaId, "reachGoal", goal);
+    }
+  }
+
   /* ---------- videos ---------- */
-  function mountVideo(sel, url) {
+  function mountVideo(sel, url, goal) {
     if (!url) return;
     var frame = document.querySelector(sel);
     if (!frame) return;
@@ -943,6 +977,15 @@ const CONFIG = {
       video.controls = true;
       video.playsInline = true;
       video.preload = "metadata";
+      if (goal) {
+        var fired = false;
+        // считаем один запуск на загрузку страницы (повторное play после паузы не плюсует)
+        video.addEventListener("play", function () {
+          if (fired) return;
+          fired = true;
+          trackGoal(goal);
+        });
+      }
       frame.appendChild(video);
     } else {
       var iframe = document.createElement("iframe");
@@ -952,8 +995,8 @@ const CONFIG = {
       frame.appendChild(iframe);
     }
   }
-  mountVideo('[data-video="1"]', CONFIG.video1Url);
-  mountVideo('[data-video="2"]', CONFIG.video2Url);
+  mountVideo('[data-video="1"]', CONFIG.video1Url, "video1_play");
+  mountVideo('[data-video="2"]', CONFIG.video2Url, "video2_play");
 
   /* ---------- results (proof fan) ---------- */
   (function () {
