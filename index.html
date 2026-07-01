@@ -300,6 +300,18 @@
   .vk-btn:hover{transform:translateY(-2px)}
 
   .link-disabled{cursor:not-allowed;opacity:.85}
+
+  /* ===== запись на Zoom-конференцию ===== */
+  .zoom-days{display:grid;grid-template-columns:repeat(auto-fill,minmax(122px,1fr));gap:12px;margin-top:8px}
+  .zoom-day{display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 10px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(167,139,250,.22);color:var(--text);cursor:pointer;font-family:'Manrope',sans-serif;transition:border-color .3s,background .3s,transform .3s}
+  .zoom-day:hover{border-color:rgba(34,211,238,.5);background:rgba(124,58,237,.12);transform:translateY(-3px)}
+  .zoom-day-wd{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--cyan)}
+  .zoom-day-num{font-size:13px;color:var(--text2);text-align:center}
+  .zoom-day-time{font-size:11.5px;color:var(--text3);margin-top:2px}
+  .zoom-note{margin-top:26px;font-size:14px;line-height:1.6;color:var(--text2);text-align:center}
+  .zoom-note-links{display:inline-flex;gap:8px;margin-left:6px}
+  .zoom-note-links a{color:var(--cyan);font-weight:600;text-decoration:none}
+  .zoom-note-links a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -326,6 +338,7 @@
       <a href="#reviews">Отзывы</a>
       <a href="#faq">Вопросы</a>
       <a href="#contacts">Контакты</a>
+      <a href="#zoom">Zoom-созвон</a>
       <a href="#results">Результаты</a>
     </nav>
     <div class="nav-right">
@@ -343,6 +356,7 @@
     <a href="#reviews" class="sidenav-dot" data-target="reviews"><span class="sidenav-label">Отзывы</span></a>
     <a href="#faq" class="sidenav-dot" data-target="faq"><span class="sidenav-label">Вопросы</span></a>
     <a href="#contacts" class="sidenav-dot" data-target="contacts"><span class="sidenav-label">Контакты</span></a>
+    <a href="#zoom" class="sidenav-dot" data-target="zoom"><span class="sidenav-label">Zoom-созвон</span></a>
     <a href="#results" class="sidenav-dot" data-target="results"><span class="sidenav-label">Результаты</span></a>
   </nav>
 
@@ -522,6 +536,24 @@
     </div>
   </section>
 
+  <!-- ===== ZOOM CALL BOOKING ===== -->
+  <section class="section" id="zoom">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Личный созвон</p>
+        <h2 class="h2" style="margin-bottom:16px">Запишитесь на Zoom-конференцию</h2>
+        <p class="lead">Общая видео-встреча для всех, кто хочет разобраться в проекте лично и задать вопросы. Все конференции проходят в одно и то же время — <strong>13:00 МСК</strong>. Выберите удобный день:</p>
+      </div>
+      <div class="zoom-days reveal" id="zoomDays"></div>
+      <p class="zoom-note">Если хотите выбрать иное время — напишите нам в любом из мессенджеров и предложите своё время в определённый день, постараемся скоординироваться и провести!
+        <span class="zoom-note-links">
+          <a href="#" target="_blank" rel="noopener" data-link="telegram">Telegram</a>
+          <a href="#" target="_blank" rel="noopener" data-link="max">MAX</a>
+        </span>
+      </p>
+    </div>
+  </section>
+
   <!-- ===== CONTACTS ===== -->
   <section class="section" id="contacts">
     <div class="wrap">
@@ -681,6 +713,28 @@
     </div>
   </div>
 
+  <!-- ===== ZOOM BOOKING MODAL ===== -->
+  <div class="overlay" id="zoomOverlay">
+    <div class="modal form-modal" id="zoomModal">
+      <div class="modal-head">
+        <div>
+          <h3>Запись на Zoom-конференцию</h3>
+          <p id="zoomDateLabel">—</p>
+        </div>
+        <button type="button" class="modal-close" data-close-zoom aria-label="Закрыть">✕</button>
+      </div>
+      <form id="zoomForm" novalidate>
+        <div class="field">
+          <label for="zoomContact">Telegram (@ваш_ник) или ссылка на MAX *</label>
+          <input id="zoomContact" name="contact" required placeholder="@username или https://max.ru/u/...">
+        </div>
+        <label class="consent"><input type="checkbox" id="zoomConsent"> Я даю согласие на обработку персональных данных</label>
+        <div class="form-msg" id="zoomMsg"></div>
+        <button type="submit" class="btn btn-grad form-submit" id="zoomSubmit">Записаться</button>
+      </form>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -728,6 +782,15 @@ const CONFIG = {
   // Эндпоинт Google Apps Script для приёма заявок ВТБ в Google-таблицу.
   // Как получить — см. web/README.md (раздел «Форма заявки ВТБ»). Пусто — приём выключен.
   vtbFormEndpoint: "https://script.google.com/macros/s/AKfycbyKh4Jf2rAzCLWMV2Z1P4fJjeYLwZkXfH-MKdcfV9bXY2aFusKguV77RlmvHChPDfX9VQ/exec",
+
+  // Запись на Zoom-конференцию. Эндпоинт Google Apps Script (своя ОТДЕЛЬНАЯ таблица,
+  // см. web/README.md раздел «Запись на Zoom-конференцию»). Пусто — приём выключен
+  // (форма покажет просьбу написать в мессенджер).
+  zoomFormEndpoint: "",
+  // На сколько дней вперёд (от завтра) показывать дни для записи.
+  zoomDaysAhead: 14,
+  // Фиксированное время всех конференций (просто текст для отображения).
+  zoomTime: "13:00 МСК",
 
   // Сервисы регистрации ИП. mode: "link" — открыть ссылку; "form" — форма заявки;
   // "disabled" — показать сообщение message.
@@ -1183,6 +1246,85 @@ if (CONFIG.metrikaId) {
       .catch(function () { showFormMsg("Не удалось отправить. Попробуйте позже.", "error"); })
       .finally(function () { formSubmit.disabled = false; formSubmit.textContent = "Отправить заявку"; });
   });
+
+  /* ---------- запись на Zoom-конференцию ---------- */
+  (function () {
+    var daysWrap = document.getElementById("zoomDays");
+    var zOverlay = document.getElementById("zoomOverlay");
+    var zModal = document.getElementById("zoomModal");
+    var zForm = document.getElementById("zoomForm");
+    var zDateLabel = document.getElementById("zoomDateLabel");
+    var zContact = document.getElementById("zoomContact");
+    var zConsent = document.getElementById("zoomConsent");
+    var zMsg = document.getElementById("zoomMsg");
+    var zSubmit = document.getElementById("zoomSubmit");
+    if (!daysWrap || !zOverlay || !zModal || !zForm) return;
+
+    var WEEKDAYS = ["воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота"];
+    var WEEKDAYS_SHORT = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+    var MONTHS = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+    var fixedTime = CONFIG.zoomTime || "13:00 МСК";
+    var selectedHuman = "";
+
+    var count = Math.max(1, CONFIG.zoomDaysAhead || 14);
+    for (var i = 1; i <= count; i++) {
+      (function (dayOffset) {
+        var d = new Date();
+        d.setHours(0, 0, 0, 0);
+        d.setDate(d.getDate() + dayOffset);
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "zoom-day";
+        btn.innerHTML =
+          '<span class="zoom-day-wd">' + WEEKDAYS_SHORT[d.getDay()] + '</span>' +
+          '<span class="zoom-day-num">' + d.getDate() + ' ' + MONTHS[d.getMonth()] + '</span>' +
+          '<span class="zoom-day-time">' + fixedTime + '</span>';
+        btn.addEventListener("click", function () {
+          selectedHuman = WEEKDAYS[d.getDay()] + ", " + d.getDate() + " " + MONTHS[d.getMonth()];
+          zDateLabel.textContent = selectedHuman + " · " + fixedTime;
+          zMsg.textContent = ""; zMsg.className = "form-msg";
+          zForm.reset();
+          zOverlay.classList.add("open");
+          document.body.style.overflow = "hidden";
+        });
+        daysWrap.appendChild(btn);
+      })(i);
+    }
+
+    function closeZoom() {
+      zOverlay.classList.remove("open");
+      var otherOpen = document.getElementById("overlay").classList.contains("open") ||
+        document.getElementById("formOverlay").classList.contains("open");
+      if (!otherOpen) document.body.style.overflow = "";
+    }
+    document.querySelectorAll("[data-close-zoom]").forEach(function (b) { b.addEventListener("click", closeZoom); });
+    zOverlay.addEventListener("click", closeZoom);
+    zModal.addEventListener("click", function (e) { e.stopPropagation(); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && zOverlay.classList.contains("open")) closeZoom();
+    });
+
+    function showZoomMsg(text, type) { zMsg.textContent = text; zMsg.className = "form-msg " + type; }
+
+    zForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var contact = zContact.value.trim();
+      if (contact.length < 3) { showZoomMsg("Укажите Telegram (@ник) или ссылку на MAX.", "error"); return; }
+      if (!zConsent.checked) { showZoomMsg("Поставьте галочку согласия на обработку персональных данных.", "error"); return; }
+      if (!CONFIG.zoomFormEndpoint) { showZoomMsg("Запись пока не подключена напрямую — напишите нам в Telegram или MAX, укажем время сами.", "error"); return; }
+
+      var data = new URLSearchParams({ date: selectedHuman, time: fixedTime, contact: contact });
+      zSubmit.disabled = true; zSubmit.textContent = "Записываем…"; showZoomMsg("", "");
+      fetch(CONFIG.zoomFormEndpoint, { method: "POST", mode: "no-cors", body: data })
+        .then(function () {
+          showZoomMsg("Готово! Вы записаны на " + selectedHuman + ", " + fixedTime + ". Ссылку на конференцию пришлём в указанный контакт.", "success");
+          trackGoal("zoom_booking_submit");
+          zForm.reset();
+        })
+        .catch(function () { showZoomMsg("Не удалось отправить. Попробуйте позже или напишите нам в мессенджер.", "error"); })
+        .finally(function () { zSubmit.disabled = false; zSubmit.textContent = "Записаться"; });
+    });
+  })();
 
   /* ---------- scroll reveal ---------- */
   var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
