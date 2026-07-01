@@ -890,7 +890,11 @@ if (CONFIG.metrikaId) {
   });
   document.querySelectorAll('[data-link="instruction"]').forEach(function (el) {
     wireLink(el, CONFIG.instructionUrl);
-    el.addEventListener("click", function (e) { e.stopPropagation(); });
+    el.addEventListener("click", function (e) {
+      e.stopPropagation();
+      // цель Метрики: клик по «Инструкция по регистрации ИП» (только когда ссылка активна)
+      if (CONFIG.instructionUrl) trackGoal("ip_instruction_click");
+    });
   });
   (function setupOferta() {
     var body = document.querySelector("[data-oferta-body]");
