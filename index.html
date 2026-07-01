@@ -977,6 +977,10 @@ if (CONFIG.metrikaId) {
       video.controls = true;
       video.playsInline = true;
       video.preload = "metadata";
+      // скрыть кнопку "Скачать" в плеере (не защита от копирования, а бытовой сдерживающий фактор)
+      video.setAttribute("controlsList", "nodownload noremoteplayback");
+      video.disablePictureInPicture = true;
+      video.addEventListener("contextmenu", function (e) { e.preventDefault(); });
       if (goal) {
         var fired = false;
         // считаем один запуск на загрузку страницы (повторное play после паузы не плюсует)
