@@ -202,6 +202,9 @@
   .fan-card:hover{--sc:1.06;z-index:300!important;border-color:rgba(34,211,238,.7);box-shadow:0 28px 80px rgba(34,211,238,.42)}
   .fan-cap{position:absolute;left:0;right:0;bottom:0;padding:24px 14px 12px;font-size:13px;font-weight:600;color:#fff;background:linear-gradient(0deg,rgba(8,2,20,.96),rgba(8,2,20,0))}
   .fan-ph{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;color:var(--lav);font-size:13px;font-weight:600;line-height:1.5}
+  .fan-solo{height:auto;min-height:0;margin-top:24px}
+  .fan-solo .fan-card{position:relative;width:min(760px,94%)}
+  .fan-solo .fan-cap{position:static;background:none;padding:12px 4px 0;text-align:center;color:var(--text2)}
   @media (max-width:760px){
     .fan{flex-direction:column;height:auto;gap:18px;margin-top:18px}
     .fan-card{position:relative;width:min(440px,94%);transform:none!important;transform-origin:center}
@@ -628,6 +631,30 @@
     </div>
   </section>
 
+  <!-- ===== EDU MATERIALS (fan cards) ===== -->
+  <section class="section" id="materials">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Обучение</p>
+        <h2 class="h2" style="margin-bottom:16px">Наши обучающие материалы</h2>
+        <p class="lead">Пошаговые статьи и инструкции — в закрытом сообществе ВКонтакте и Базе знаний. Наведите на веер — карточки раскроются, клик откроет скриншот в полном размере.</p>
+      </div>
+      <div class="fan reveal" id="fanEdu"></div>
+    </div>
+  </section>
+
+  <!-- ===== ALWAYS ONLINE (solo card) ===== -->
+  <section class="section" id="online">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Поддержка</p>
+        <h2 class="h2" style="margin-bottom:16px">Мы всегда на связи</h2>
+        <p class="lead">Пишите в сообщество ВКонтакте — отвечаем быстро, обычно в течение 15 минут.</p>
+      </div>
+      <div class="fan fan-solo reveal" id="fanOnline"></div>
+    </div>
+  </section>
+
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="footer-inner">
@@ -792,6 +819,18 @@ const CONFIG = {
     { src: "img/proof-payouts.png",   caption: "Выплаты и CPA-конверсии" },
     { src: "img/proof-offers.png",    caption: "Каталог офферов в кабинете" },
     { src: "img/proof-analytics.png", caption: "Аналитика и доход за период" },
+  ],
+
+  // Скриншоты обучающих материалов (веер, блок «Наши обучающие материалы»).
+  eduImages: [
+    { src: "img/edu-vk-articles.png",    caption: "Обучающие статьи в сообществе ВК" },
+    { src: "img/edu-baza-home.png",      caption: "База знаний бесплатных инструментов" },
+    { src: "img/edu-baza-vacancies.png", caption: "Рекомендуемые вакансии и офферы" },
+  ],
+
+  // Скриншот блока «Мы всегда на связи» (одиночная карточка).
+  onlineImages: [
+    { src: "img/support-vk-reply.png", caption: "Сообщество ВК: отвечаем быстро — обычно в течение 15 минут" },
   ],
 
   // Контакты (блок «Остались вопросы?»). Ссылки на мессенджеры под QR-кодами.
@@ -1125,12 +1164,12 @@ if (CONFIG.metrikaId) {
   mountVideo('[data-video="1"]', CONFIG.video1Url, "video1_play");
   mountVideo('[data-video="2"]', CONFIG.video2Url, "video2_play");
 
-  /* ---------- results (proof fan) ---------- */
-  (function () {
-    var fan = document.getElementById("fan");
+  /* ---------- fan renderer (Результаты / Обучающие материалы / На связи) ---------- */
+  function renderFan(fanId, sectionId, imgs) {
+    var fan = document.getElementById(fanId);
     if (!fan) return;
-    var imgs = CONFIG.proofImages || [];
-    if (!imgs.length) { var s = document.getElementById("results"); if (s) s.style.display = "none"; return; }
+    imgs = imgs || [];
+    if (!imgs.length) { var s = document.getElementById(sectionId); if (s) s.style.display = "none"; return; }
     var c = (imgs.length - 1) / 2;
     imgs.forEach(function (it, i) {
       var d = i - c;
@@ -1157,7 +1196,10 @@ if (CONFIG.metrikaId) {
       if (it.caption) { var cap = document.createElement("span"); cap.className = "fan-cap"; cap.textContent = it.caption; a.appendChild(cap); }
       fan.appendChild(a);
     });
-  })();
+  }
+  renderFan("fan", "results", CONFIG.proofImages);
+  renderFan("fanEdu", "materials", CONFIG.eduImages);
+  renderFan("fanOnline", "online", CONFIG.onlineImages);
 
   /* ---------- contacts ---------- */
   document.querySelectorAll('[data-link="telegram"]').forEach(function (el) { wireLink(el, CONFIG.telegramUrl); });
