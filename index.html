@@ -281,7 +281,7 @@
   .service-btn-muted:hover{transform:none;background:rgba(255,255,255,.1)}
   .service-note{flex-basis:100%;width:100%;margin-top:4px;font-size:12.5px;line-height:1.5;color:#FBBF24;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.32);border-radius:10px;padding:9px 12px;display:none}
   .service-note.show{display:block}
-  .benefits-toggle{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:0;background:none;border:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:700;color:#A78BFA;transition:color .3s}
+  .benefits-toggle{display:inline-flex;align-items:center;gap:6px;margin-top:8px;margin-right:20px;padding:0;background:none;border:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:700;color:#A78BFA;transition:color .3s}
   .benefits-toggle:hover{color:var(--cyan)}
   .benefits-toggle .arr{display:inline-block;font-size:10px;transition:transform .3s}
   .benefits-toggle.open .arr{transform:rotate(180deg)}
@@ -350,9 +350,9 @@
       <a href="#journey">Как это работает</a>
       <a href="#advantages">Преимущества</a>
       <a href="#reviews">Отзывы</a>
-      <a href="#faq">Вопросы</a>
-      <a href="#contacts">Контакты</a>
       <a href="#zoom">Zoom-созвон</a>
+      <a href="#contacts">Контакты</a>
+      <a href="#faq">Вопросы</a>
       <a href="#results">Результаты</a>
     </nav>
     <div class="nav-right">
@@ -368,9 +368,9 @@
     <a href="#journey" class="sidenav-dot" data-target="journey"><span class="sidenav-label">Как это работает</span></a>
     <a href="#advantages" class="sidenav-dot" data-target="advantages"><span class="sidenav-label">Преимущества</span></a>
     <a href="#reviews" class="sidenav-dot" data-target="reviews"><span class="sidenav-label">Отзывы</span></a>
-    <a href="#faq" class="sidenav-dot" data-target="faq"><span class="sidenav-label">Вопросы</span></a>
-    <a href="#contacts" class="sidenav-dot" data-target="contacts"><span class="sidenav-label">Контакты</span></a>
     <a href="#zoom" class="sidenav-dot" data-target="zoom"><span class="sidenav-label">Zoom-созвон</span></a>
+    <a href="#contacts" class="sidenav-dot" data-target="contacts"><span class="sidenav-label">Контакты</span></a>
+    <a href="#faq" class="sidenav-dot" data-target="faq"><span class="sidenav-label">Вопросы</span></a>
     <a href="#results" class="sidenav-dot" data-target="results"><span class="sidenav-label">Результаты</span></a>
   </nav>
 
@@ -815,6 +815,7 @@ const CONFIG = {
   // "disabled" — показать сообщение message.
   services: [
     { name: "Сервис 1 (Озон Банк)", desc: "Регистрация ИП через сервис банка.", tariff: "При оформлении выбирайте тариф «Начальный».", mode: "link", url: "https://rko-group.ru/s/IA42h5Ik",
+      prep: 'Перед встречей с представителем банка рекомендуем заранее:<ol><li>Установить приложение <strong>MyDSS</strong>.</li><li>Установить приложение <strong>Ozon Банк</strong>.</li><li>Открыть счёт физического лица в Ozon Банке. <em>(Если у Вас уже есть дебетовая карта Озон Банка — значит, счёт физлица у Вас уже открыт.)</em></li></ol><p>Если счёта физлица в Ozon Банке нет или нужные приложения не установлены, для открытия расчётного счёта может потребоваться повторная встреча с представителем банка.</p><p>Чтобы этого избежать, можно заказать дебетовую карту Озон и сразу подать заявку на открытие ИП — ждать карту отдельно не нужно: её привезут либо раньше, либо тем же курьером, что доставит бизнес-карту.</p><a class="instruction-link" href="https://rko-group.ru/s/XM5JWpoi" target="_blank" rel="noopener" style="margin-top:6px">🪪 Заказать дебетовую карту Озон →</a>',
       benefits: "<strong>Начисляется 3 000 ₽</strong> через 30 дней при регистрации бизнеса через сервис Озон Банка — при выполнении условий:<ol><li>После регистрации ИП пополните счёт Озон Банка на сумму от 3 000 ₽.</li><li>Не выводите деньги со счёта — тратить можно: любые обыденные покупки на собственные нужды совершайте по бизнес-карте Озон Банка.</li><li>Не допускайте, чтобы на счёте оставалось меньше 300 ₽.</li></ol>" },
     { name: "Сервис 2 (СберБанк)",  desc: "Регистрация ИП через сервис банка.", tariff: "Выбирайте бесплатный тариф — обслуживание 0 ₽.", mode: "link", url: "https://www.sberbank.com/ru/s_m_business/referral/reg?utm_source=0NVB19CJEHGKZ",
       benefits: "<strong>Начисляется 3 000 ₽</strong> при пополнении счёта от 1 000 ₽ — банк обычно начисляет в течение 2–3 недель. Не выводите деньги со счёта; потратить можно, совершая покупки по бизнес-карте." },
@@ -979,6 +980,22 @@ if (CONFIG.metrikaId) {
       a.textContent = "Открыть";
       wireLink(a, s.url);
       row.appendChild(a);
+    }
+
+    if (s.prep) {
+      var pt = document.createElement("button");
+      pt.type = "button";
+      pt.className = "benefits-toggle";
+      pt.innerHTML = 'Перед встречей с банком <span class="arr">▼</span>';
+      var pp = document.createElement("div");
+      pp.className = "service-benefits";
+      pp.innerHTML = s.prep;
+      pt.addEventListener("click", function () {
+        pt.classList.toggle("open");
+        pp.classList.toggle("show");
+      });
+      info.appendChild(pt);
+      row.appendChild(pp);
     }
 
     if (s.benefits) {
